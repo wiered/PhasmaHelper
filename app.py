@@ -1,11 +1,6 @@
 import json
-import tkinter
-import textwrap
 
 import customtkinter
-from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtWidgets import  QMainWindow, QLabel
-from PyQt6.QtGui import QFont
 
 import frames
 from core import lists
@@ -21,14 +16,13 @@ SCREEN_WIDTH = 0
 SCREEN_HEIGHT = 0
 
 
-
 class App(customtkinter.CTk):
     def __init__(self):
         global SCREEN_WIDTH, SCREEN_HEIGHT
         super().__init__()
 
         # configure window
-        self.__version__ = "2.0a"
+        self.__version__ = "2.0-rc1"
         self.title("Phasma Helper")
 
         width = 1060

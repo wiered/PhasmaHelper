@@ -38,36 +38,6 @@ evidences = [
     "DOTS"
 ]
 
-evidences_short = {
-    "emf": "EMF",
-    "emp": "EMF",
-    "sb": "Spirit Box",
-    "рация": "Spirit Box",
-    "fp": "Fingerprints",
-    "fingerprints": "Fingerprints",
-    "отпечатки": "Fingerprints",
-    "go": "Ghost Orb",
-    "orb": "Ghost Orb",
-    "орба": "Ghost Orb",
-    "gw": "Ghost Writing",
-    "дневник": "Ghost Writing",
-    "ft": "Freezing Temp",
-    "минус": "Freezing Temp",
-    "dots": "DOTS",
-    "проекция": "DOTS"
-}
-
-evidences_dict_ru = {
-    "Датчик ЭМП (ур. 5)": "EMF",
-    "Радиоприёмник": "Spirit Box",
-    "Отпечатки рук": "Fingerprints",
-    "Отпечатки": "Fingerprints",
-    "Призрачный огонёк": "Ghost Orb",
-    "Записи в блокноте": "Ghost Writing",
-    "Минусовая температура": "Freezing Temp",
-    "Лазерный проектор": "DOTS"
-}
-
 with open('core\evdsdict.json', encoding='utf-8') as json_file:
     evidences_dict = json.load(json_file)
 

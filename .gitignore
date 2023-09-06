@@ -136,6 +136,9 @@ dmypy.json
 db/users.csv
 config/config.ini
 main.py
+core/parser.py
+core/qt.py
+core/timers.py
 
 # My Own Folders
 tests/
