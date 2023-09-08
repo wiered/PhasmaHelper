@@ -1,15 +1,15 @@
-import customtkinter
+import customtkinter as ctk
 
-class GhostsFrame(customtkinter.CTkFrame):
+class GhostsFrame(ctk.CTkFrame):
     def __init__(self, master, get_ghost):
         super().__init__(master)
 
-        self.label_spirits = customtkinter.CTkLabel(master=self, text="SPIRITS")
+        self.label_spirits = ctk.CTkLabel(master=self, text="SPIRITS")
         self.label_spirits.grid(row=0, column=0, columnspan=1, padx=10, pady=10, sticky="")
 
         self._spirts_buttons = []
 
-        spirit = customtkinter.CTkButton(
+        spirit = ctk.CTkButton(
             master=self,
             width=110,
             text="Дух",
@@ -17,7 +17,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         spirit.grid(row=1, column=0, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(spirit)
 
-        wraith = customtkinter.CTkButton(
+        wraith = ctk.CTkButton(
             master=self,
             width=110,
             text="Мираж",
@@ -25,7 +25,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         wraith.grid(row=1, column=1, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(wraith)
 
-        phantom = customtkinter.CTkButton(
+        phantom = ctk.CTkButton(
             master=self,
             width=110,
             text="Фантом",
@@ -33,7 +33,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         phantom.grid(row=1, column=2, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(phantom)
 
-        poltergeist = customtkinter.CTkButton(
+        poltergeist = ctk.CTkButton(
             master=self,
             width=110,
             text="Полтергейст",
@@ -41,7 +41,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         poltergeist.grid(row=1, column=3, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(poltergeist)
 
-        banshee = customtkinter.CTkButton(
+        banshee = ctk.CTkButton(
             master=self,
             width=110,
             text="Банши",
@@ -49,7 +49,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         banshee.grid(row=1, column=4, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(banshee)
 
-        jinn = customtkinter.CTkButton(
+        jinn = ctk.CTkButton(
             master=self,
             width=110,
             text="Джинн",
@@ -57,7 +57,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         jinn.grid(row=2, column=0, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(jinn)
 
-        mare = customtkinter.CTkButton(
+        mare = ctk.CTkButton(
             master=self,
             width=110,
             text="Мара",
@@ -65,7 +65,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         mare.grid(row=2, column=1, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(mare)
 
-        revenant = customtkinter.CTkButton(
+        revenant = ctk.CTkButton(
             master=self,
             width=110,
             text="Ревенант",
@@ -73,7 +73,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         revenant.grid(row=2, column=2, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(revenant)
 
-        shade = customtkinter.CTkButton(
+        shade = ctk.CTkButton(
             master=self,
             width=110,
             text="Тень",
@@ -81,7 +81,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         shade.grid(row=2, column=3, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(shade)
 
-        demon = customtkinter.CTkButton(
+        demon = ctk.CTkButton(
             master=self,
             width=110,
             text="Демон",
@@ -89,7 +89,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         demon.grid(row=2, column=4, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(demon)
 
-        yurei = customtkinter.CTkButton(
+        yurei = ctk.CTkButton(
             master=self,
             width=110,
             text="Юрэй",
@@ -97,7 +97,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         yurei.grid(row=3, column=0, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(yurei)
 
-        oni = customtkinter.CTkButton(
+        oni = ctk.CTkButton(
             master=self,
             width=110,
             text="Они",
@@ -105,7 +105,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         oni.grid(row=3, column=1, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(oni)
 
-        yokai = customtkinter.CTkButton(
+        yokai = ctk.CTkButton(
             master=self,
             width=110,
             text="Ёкай",
@@ -113,7 +113,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         yokai.grid(row=3, column=2, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(yokai)
 
-        hantu = customtkinter.CTkButton(
+        hantu = ctk.CTkButton(
             master=self,
             width=110,
             text="Ханту",
@@ -121,7 +121,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         hantu.grid(row=3, column=3, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(hantu)
 
-        goryo = customtkinter.CTkButton(
+        goryo = ctk.CTkButton(
             master=self,
             width=110,
             text="Горё",
@@ -129,7 +129,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         goryo.grid(row=3, column=4, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(goryo)
 
-        myling = customtkinter.CTkButton(
+        myling = ctk.CTkButton(
             master=self,
             width=110,
             text="Мюлинг",
@@ -137,7 +137,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         myling.grid(row=4, column=0, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(myling)
 
-        onryo = customtkinter.CTkButton(
+        onryo = ctk.CTkButton(
             master=self,
             width=110,
             text="Онрё",
@@ -145,7 +145,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         onryo.grid(row=4, column=1, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(onryo)
 
-        theTwins = customtkinter.CTkButton(
+        theTwins = ctk.CTkButton(
             master=self,
             width=110,
             text="Близнецы",
@@ -153,7 +153,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         theTwins.grid(row=4, column=2, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(theTwins)
 
-        raiju = customtkinter.CTkButton(
+        raiju = ctk.CTkButton(
             master=self,
             width=110,
             text="Райдзю",
@@ -161,7 +161,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         raiju.grid(row=4, column=3, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(raiju)
 
-        obake = customtkinter.CTkButton(
+        obake = ctk.CTkButton(
             master=self,
             width=110,
             text="Обакэ",
@@ -169,7 +169,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         obake.grid(row=4, column=4, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(obake)
 
-        theMimic = customtkinter.CTkButton(
+        theMimic = ctk.CTkButton(
             master=self,
             width=110,
             text="Мимик",
@@ -177,7 +177,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         theMimic.grid(row=5, column=1, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(theMimic)
 
-        moroi = customtkinter.CTkButton(
+        moroi = ctk.CTkButton(
             master=self,
             width=110,
             text="Морой",
@@ -185,7 +185,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         moroi.grid(row=5, column=2, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(moroi)
 
-        deogen = customtkinter.CTkButton(
+        deogen = ctk.CTkButton(
             master=self,
             width=110,
             text="Деоген",
@@ -193,7 +193,7 @@ class GhostsFrame(customtkinter.CTkFrame):
         deogen.grid(row=5, column=3, padx=(20, 20), pady=10, sticky="nsew")
         self._spirts_buttons.append(deogen)
 
-        thaye = customtkinter.CTkButton(
+        thaye = ctk.CTkButton(
             master=self,
             width=110,
             text="Тайэ",

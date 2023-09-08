@@ -1,10 +1,17 @@
 import textwrap
 
-import customtkinter
+import customtkinter as ctk
 
 from core import lists
+from config import cfg
 
-class InfoWindow(customtkinter.CTk):
+
+button_bg_color = "#1f6aa4"
+button_bg_color_light = "#298bd6"
+button_bg_color_dark = "#0D2B43"
+
+
+class InfoWindow(ctk.CTk):
     def __init__(self, name):
         super().__init__()
 
@@ -13,24 +20,30 @@ class InfoWindow(customtkinter.CTk):
         self.title("Phasma Helper: %s" % name)
         self.iconbitmap("logo.ico")
 
-        self.text_label = customtkinter.CTkLabel(master=self, text=self.general_text)
-        self.text_label.grid(row=0, column=0, columnspan=1, padx=(30, 30), pady=10, sticky="nsew")
+        if cfg.minimalistic_info:
+            self.text_label = ctk.CTkLabel(master=self, text=self.general_text)
+            self.text_label.grid(row=0, column=0, columnspan=1, padx=(30, 30), pady=10, sticky="nsew")
+        else:
+            self.ghost = ctk.CTkLabel(master=self, text=f"{name}")
+            self.ghost.grid(row=0, column=0, columnspan=1, padx=(0, 0), pady=0, sticky="nsew")
 
-        # self.text = TextFrame(self)
-        # self.text.grid(row=0, column=1, columnspan=1, padx=(30, 30), pady=10, sticky="nsew")
+            self.text = TextFrame(self)
+            self.text.grid(row=2, column=0, columnspan=1, padx=(5, 5), pady=(5, 10), sticky="nsew")
 
-        # self.menu = MenuFrame(self, name, self.text.set_text)
-        # self.menu.grid(row=0, column=0, columnspan=1, padx=(30, 30), pady=10, sticky="nsew")
-        # self.text.set_text(self.menu.behavior_text)
+            self.menu = MenuFrame(self, name, self.text.set_text)
+            self.menu.grid(row=1, column=0, columnspan=1, padx=(170, 170), pady=10, sticky="nsew")
 
 
     def get_ghost_info(self, name):
-        self.behavior_text = lists.Ghosts_dict.gd().get(name).get("behavior")
-        self.evidences_text = lists.Ghosts_dict.gd().get(name).get("evidences")
-        self.advantages_text = lists.Ghosts_dict.gd().get(name).get("advantages")
-        self.strategy_text = lists.Ghosts_dict.gd().get(name).get("strategy")
+        self.ghost_dict = lists.Ghosts_dict()
+
+        self.behavior_text = self.ghost_dict.dict.get(name).get("behavior")
+        self.evidences_text = self.ghost_dict.dict.get(name).get("evidences")
+        self.advantages_text = self.ghost_dict.dict.get(name).get("advantages")
+        self.strategy_text = self.ghost_dict.dict.get(name).get("strategy")
 
         self.behavior_text = textwrap.fill(self.behavior_text, width=100)
+        self.evidences_text = "; ".join(self.evidences_text)
         self.advantages_text = textwrap.fill(self.advantages_text, width=100)
         self.strategy_text = textwrap.fill(self.strategy_text, width=100)
 
@@ -38,88 +51,117 @@ class InfoWindow(customtkinter.CTk):
         self.general_text += f"=================== {name} ====================\n"
         self.general_text += self.behavior_text
         self.general_text += "\n===================   Улики   ====================\n"
-        self.general_text += "; ".join(self.evidences_text)
+        self.general_text += self.evidences_text
         self.general_text += "\n=================== Слабости  ====================\n"
         self.general_text += self.advantages_text
         self.general_text += "\n=================== Стратегия ====================\n"
         self.general_text += self.strategy_text
 
-class MenuFrame(customtkinter.CTkFrame):
+
+class MenuFrame(ctk.CTkFrame):
     def __init__(self, master, name, set_text):
         super().__init__(master)
 
+        self.set_text = set_text
+        self.tabs = [False, False, False, False]
+
         self.get_ghost_info(name)
+        self.buttons = {}
 
-        generally = customtkinter.CTkButton(
-            master=self,
-            width=110,
-            text="Generally",
-        )
-        generally.grid(row=0, column=0, padx=(20, 20), pady=10, sticky="w")
-        generally._command = lambda: set_text(self.general_text)
-
-        behavior = customtkinter.CTkButton(
+        behavior = ctk.CTkButton(
             master=self,
             width=110,
             text="Behavior",
+            corner_radius=0,
         )
-        behavior.grid(row=1, column=0, padx=(20, 20), pady=10, sticky="w")
-        behavior._command = lambda: set_text(self.behavior_text)
+        behavior.grid(row=0, column=1, padx=(0,0), pady=0, sticky="nsew")
+        behavior._command = lambda: self.change_tab(0)
+        self.buttons.update({"behavior": behavior})
 
-        evidences = customtkinter.CTkButton(
+        evidences = ctk.CTkButton(
             master=self,
             width=110,
             text="Evidences",
+            corner_radius=0,
         )
-        evidences.grid(row=2, column=0, padx=(20, 20), pady=10, sticky="w")
-        evidences._command = lambda: set_text(self.evidences_text)
+        evidences.grid(row=0, column=2, padx=0, pady=0, sticky="nsew")
+        evidences._command = lambda: self.change_tab(1)
+        self.buttons.update({"evidences": evidences})
 
-        advantages = customtkinter.CTkButton(
+        advantages = ctk.CTkButton(
             master=self,
             width=110,
             text="Advantages",
+            corner_radius=0,
         )
-        advantages.grid(row=3, column=0, padx=(20, 20), pady=10, sticky="w")
-        advantages._command = lambda: set_text(self.advantages_text)
+        advantages.grid(row=0, column=3, padx=0, pady=0, sticky="nsew")
+        advantages._command = lambda: self.change_tab(2)
+        self.buttons.update({"advantages": advantages})
 
-        strategy = customtkinter.CTkButton(
+        strategy = ctk.CTkButton(
             master=self,
             width=110,
             text="Strategy",
+            corner_radius=0,
         )
-        strategy.grid(row=4, column=0, padx=(20, 20), pady=10, sticky="w")
-        strategy._command = lambda: set_text(self.strategy_text)
+        strategy.grid(row=0, column=4, padx=(0, 0), pady=0, sticky="nsew")
+        strategy._command = lambda: self.change_tab(3)
+        self.buttons.update({"strategy": strategy})
 
-    
+        self.change_tab(0)
+
+
+    def change_tab(self, tab):
+        self.tabs[tab] = not self.tabs[tab]
+
+        temp_text = ""
+
+        for i, tb in enumerate(lists.tabs):
+            if self.tabs[i]:
+                self.buttons[tb].configure(fg_color=button_bg_color_light)
+                temp_text += f"\n=================== {tb} ====================\n"
+                temp_text += self.texts[tb]
+            else:
+                self.buttons[tb].configure(fg_color=button_bg_color_dark)
+                
+        self.set_text(temp_text)
+            
+
     def get_ghost_info(self, name):
-        self.behavior_text = lists.Ghosts_dict.gd().get(name).get("behavior")
-        self.evidences_text = lists.Ghosts_dict.gd().get(name).get("evidences")
-        self.advantages_text = lists.Ghosts_dict.gd().get(name).get("advantages")
-        self.strategy_text = lists.Ghosts_dict.gd().get(name).get("strategy")
+        self.ghost_dict = lists.Ghosts_dict()
 
-        self.behavior_text = textwrap.fill(self.behavior_text, width=100)
-        self.advantages_text = textwrap.fill(self.advantages_text, width=100)
-        self.strategy_text = textwrap.fill(self.strategy_text, width=100)
+        self.texts = {}
 
-        self.general_text = ""
-        self.general_text += f"=================== {name} ====================\n"
-        self.general_text += self.behavior_text
-        self.general_text += "\n===================   Улики   ====================\n"
-        self.general_text += "; ".join(self.evidences_text)
-        self.general_text += "\n=================== Слабости  ====================\n"
-        self.general_text += self.advantages_text
-        self.general_text += "\n=================== Стратегия ====================\n"
-        self.general_text += self.strategy_text
+        self.texts["behavior"] = self.ghost_dict.get(name).get("behavior")
+        self.texts["evidences"] = self.ghost_dict.get(name).get("evidences")
+        self.texts["advantages"] = self.ghost_dict.get(name).get("advantages")
+        self.texts["strategy"] = self.ghost_dict.get(name).get("strategy")
 
-class TextFrame(customtkinter.CTkFrame):
+        self.texts["behavior"] = textwrap.fill(self.texts["behavior"], width=100)
+        self.texts["evidences"] = textwrap.fill("; ".join(self.texts["evidences"]), width=100)
+        self.texts["advantages"] = textwrap.fill(self.texts["advantages"], width=100)
+        self.texts["strategy"] = textwrap.fill(self.texts["strategy"], width=100)
+
+        self.texts["general"] = ""
+        self.texts["general"] += f"=================== {name} ====================\n"
+        self.texts["general"] += self.texts["behavior"]
+        self.texts["general"] += "\n===================   Улики   ====================\n"
+        self.texts["general"] += self.texts["evidences"]
+        self.texts["general"] += "\n=================== Слабости  ====================\n"
+        self.texts["general"] += self.texts["advantages"]
+        self.texts["general"] += "\n=================== Стратегия ====================\n"
+        self.texts["general"] += self.texts["strategy"]
+
+class TextFrame(ctk.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
 
-        self.text = customtkinter.CTkLabel(master=self, text=f"sample")
+        self.text = ctk.CTkLabel(master=self, text=f"sample")
         self.text.grid(row=0, column=0, columnspan=1, padx=(30, 30), pady=10, sticky="nsew")
 
 
     def set_text(self, text):
         self.text.configure(text=text)
+        
 
     

@@ -135,7 +135,6 @@ dmypy.json
 # My Own Files
 db/users.csv
 config/config.ini
-main.py
 core/parser.py
 core/qt.py
 core/timers.py

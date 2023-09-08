@@ -38,20 +38,36 @@ evidences = [
     "DOTS"
 ]
 
+tabs = [
+    "behavior",
+    "evidences",
+    "advantages",
+    "strategy"
+]
+
 with open('core\evdsdict.json', encoding='utf-8') as json_file:
     evidences_dict = json.load(json_file)
 
 class Ghosts_dict:
-    with open('core\dict.json', encoding='utf-8') as json_file:
-        ghosts_dict = json.load(json_file)
-
-    evsd = []
-        
-    @staticmethod
-    def reload():
+    def __init__(self):
         with open('core\dict.json', encoding='utf-8') as json_file:
-            Ghosts_dict.ghosts_dict = json.load(json_file)
+            self._dict = json.load(json_file)
+    
 
-    @staticmethod
-    def gd():
-        return Ghosts_dict.ghosts_dict
+    @property
+    def dict(self):
+        return self._dict
+    
+
+    @dict.setter
+    def dict(self, value):
+        return
+    
+
+    def reload(self):
+        with open('core\dict.json', encoding='utf-8') as json_file:
+            self._dict = json.load(json_file)
+
+
+    def get(self, value):
+        return self._dict.get(value)
