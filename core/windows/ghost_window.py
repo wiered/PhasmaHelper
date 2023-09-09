@@ -1,17 +1,32 @@
+"""
+    PhasmaHelper
+    Copyright (C) 2023 Wiered
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
+
 import textwrap
 
 import customtkinter as ctk
 
-from core import lists
+from core.helpers import lists, theme
 from config import cfg
 
-
-button_bg_color = "#1f6aa4"
-button_bg_color_light = "#298bd6"
-button_bg_color_dark = "#0D2B43"
+BORDER_RADIUS = 0
 
 
-class InfoWindow(ctk.CTk):
+class GhostInfoWindow(ctk.CTk):
     def __init__(self, name):
         super().__init__()
 
@@ -20,7 +35,7 @@ class InfoWindow(ctk.CTk):
         self.title("Phasma Helper: %s" % name)
         self.iconbitmap("logo.ico")
 
-        if cfg.minimalistic_info:
+        if cfg.is_minimalistic:
             self.text_label = ctk.CTkLabel(master=self, text=self.general_text)
             self.text_label.grid(row=0, column=0, columnspan=1, padx=(30, 30), pady=10, sticky="nsew")
         else:
@@ -73,6 +88,7 @@ class MenuFrame(ctk.CTkFrame):
             width=110,
             text="Behavior",
             corner_radius=0,
+            border_width=BORDER_RADIUS,
         )
         behavior.grid(row=0, column=1, padx=(0,0), pady=0, sticky="nsew")
         behavior._command = lambda: self.change_tab(0)
@@ -83,6 +99,7 @@ class MenuFrame(ctk.CTkFrame):
             width=110,
             text="Evidences",
             corner_radius=0,
+            border_width=BORDER_RADIUS,
         )
         evidences.grid(row=0, column=2, padx=0, pady=0, sticky="nsew")
         evidences._command = lambda: self.change_tab(1)
@@ -93,6 +110,7 @@ class MenuFrame(ctk.CTkFrame):
             width=110,
             text="Advantages",
             corner_radius=0,
+            border_width=BORDER_RADIUS,
         )
         advantages.grid(row=0, column=3, padx=0, pady=0, sticky="nsew")
         advantages._command = lambda: self.change_tab(2)
@@ -103,6 +121,7 @@ class MenuFrame(ctk.CTkFrame):
             width=110,
             text="Strategy",
             corner_radius=0,
+            border_width=BORDER_RADIUS,
         )
         strategy.grid(row=0, column=4, padx=(0, 0), pady=0, sticky="nsew")
         strategy._command = lambda: self.change_tab(3)
@@ -118,11 +137,19 @@ class MenuFrame(ctk.CTkFrame):
 
         for i, tb in enumerate(lists.tabs):
             if self.tabs[i]:
-                self.buttons[tb].configure(fg_color=button_bg_color_light)
+                self.buttons[tb].configure(
+                    fg_color=theme.button_fg_color_light,
+                    bg_color=theme.button_fg_color_light,
+                    border_color=theme.button_border_color_light,
+                    )
                 temp_text += f"\n=================== {tb} ====================\n"
                 temp_text += self.texts[tb]
             else:
-                self.buttons[tb].configure(fg_color=button_bg_color_dark)
+                self.buttons[tb].configure(
+                    fg_color=theme.button_fg_color_dark,
+                    bg_color=theme.button_fg_color_dark,
+                    border_color=theme.button_border_color_dark,
+                    )
                 
         self.set_text(temp_text)
             
@@ -152,6 +179,7 @@ class MenuFrame(ctk.CTkFrame):
         self.texts["general"] += "\n=================== Стратегия ====================\n"
         self.texts["general"] += self.texts["strategy"]
 
+
 class TextFrame(ctk.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
@@ -163,5 +191,3 @@ class TextFrame(ctk.CTkFrame):
     def set_text(self, text):
         self.text.configure(text=text)
         
-
-    

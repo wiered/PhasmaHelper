@@ -16,16 +16,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-import ctypes
+# Difficulty buttons
+fg_color_frame_dark = "#212121"
+fg_color_frame_light = "#292929"
 
-from core.app import App, configure_colors
-from config import cfg
+# buttons
+button_fg_color = "#1f6aa4"
+button_fg_color_light = "#298bd6"
+button_fg_color_dark = "#14446b"
 
-if __name__ == "__main__":
-    myappid = 'wiered.phasmahelper.phasmahelper.1' # arbitrary string
-    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
-
-    configure_colors(cfg.appearance, cfg.color_theme)
-
-    app = App()
-    app.mainloop()
+button_border_color_light = "#216fab"
+button_border_color_dark = "#185281"

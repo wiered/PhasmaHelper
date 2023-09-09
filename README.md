@@ -1,5 +1,4 @@
-# PhasmaHelper
+# <img src="logo.ico" alt="logo" width="20"/> PhasmaHelper
 
-version 1.0-rc2
-
-<img src="logo.ico" alt="logo" width="100"/>
+Provides you with useful information about ghosts, their behaviors, 
+needed evidences, weaknesses and strategies against them.
