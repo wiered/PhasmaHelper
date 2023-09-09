@@ -1,5 +1,5 @@
 # PhasmaHelper
 
-version 1.0-rc2
+version 1.0
 
 <img src="logo.ico" alt="logo" width="100"/>
