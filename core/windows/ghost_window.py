@@ -33,7 +33,7 @@ class GhostInfoWindow(ctk.CTk):
         self.get_ghost_info(name)
 
         self.title("Phasma Helper: %s" % name)
-        self.iconbitmap("logo.ico")
+        self.iconbitmap(".\core\data\logo.ico")
 
         if cfg.is_minimalistic:
             self.text_label = ctk.CTkLabel(master=self, text=self.general_text)

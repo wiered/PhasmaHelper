@@ -30,7 +30,7 @@ class App(ctk.CTk):
         super().__init__()
 
         # configure window
-        self.__version__ = "1.0"
+        self.__version__ = "1.1"
         self.title(f"Phasma Helper v{self.__version__}")
 
         width = 1060
@@ -40,7 +40,7 @@ class App(ctk.CTk):
         screen_height = int((0.4 * self.winfo_screenheight() - 0.5 * height) * 1.5)
 
         self.geometry(f"{width}x{height}+{screen_width}+{screen_height}")
-        self.iconbitmap("logo.ico")
+        self.iconbitmap(".\core\data\logo.ico")
 
         self.active_evidences = []
         

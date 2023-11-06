@@ -30,7 +30,7 @@ class TimerWindow(ctk.CTk):
         super().__init__()
 
         self.title("Settings")
-        self.after(250, lambda: self.iconbitmap('logo.ico'))
+        self.after(250, lambda: self.iconbitmap('.\core\data\logo.ico'))
 
         self.time_frame = TimeFrame(self)
         self.time_frame.grid(row=0, column=0, columnspan=1, padx=(20, 20), pady=10, sticky="nsew")

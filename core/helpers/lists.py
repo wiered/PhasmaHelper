@@ -63,7 +63,7 @@ tabs = [
     "strategy"
 ]
 
-with open('core\data\evdsdict.json', encoding='utf-8') as json_file:
+with open('.\core\data\evdsdict.json', encoding='utf-8') as json_file:
     ghosts_by_evidences = json.load(json_file)
 
 class Ghosts_dict:

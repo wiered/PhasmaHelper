@@ -25,7 +25,7 @@ class SettingWindow(ctk.CTkToplevel):
         super().__init__(master)
 
         self.title("Settings")
-        self.after(250, lambda: self.iconbitmap('logo.ico'))
+        self.after(250, lambda: self.iconbitmap('.\core\data\logo.ico'))
 
         self.settings_frame = SettingsFrame(self)
         self.settings_frame.grid(row=0, column=0, columnspan=1, padx=(20, 20), pady=10, sticky="nsew")

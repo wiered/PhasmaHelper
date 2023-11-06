@@ -22,7 +22,7 @@ from core.app import App, configure_colors
 from config import cfg
 
 if __name__ == "__main__":
-    myappid = 'wiered.phasmahelper.phasmahelper.1' # arbitrary string
+    myappid = 'wiered.phasmahelper.phasmahelper.11' # arbitrary string
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
     configure_colors(cfg.appearance, cfg.color_theme)
