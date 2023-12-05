@@ -16,16 +16,20 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+import os
+
 import ctypes
 
 from core.app import App, configure_colors
 from config import cfg
 
 if __name__ == "__main__":
-    myappid = 'wiered.phasmahelper.phasmahelper.11' # arbitrary string
+    myappid = 'wiered.phasmahelper.ph.12' # arbitrary string
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
     configure_colors(cfg.appearance, cfg.color_theme)
 
     app = App()
+    
     app.mainloop()
+    

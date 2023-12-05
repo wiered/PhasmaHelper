@@ -25,27 +25,21 @@ class SettingWindow(ctk.CTkToplevel):
         super().__init__(master)
 
         self.title("Settings")
-        self.after(250, lambda: self.iconbitmap('.\core\data\logo.ico'))
+        self.after(250, lambda: self.iconbitmap('.\core\icons\logo.ico'))
 
-        self.settings_frame = SettingsFrame(self)
+        self.settings_frame = ctk.CTkFrame(self)
         self.settings_frame.grid(row=0, column=0, columnspan=1, padx=(20, 20), pady=10, sticky="nsew")
-
-
-class SettingsFrame(ctk.CTkFrame):
-    def __init__(self, master):
-        super().__init__(master)
-
+        
         self.minimalistic_info_switch = ctk.CTkSwitch(
-            master=self,
+            master=self.settings_frame,
             command=lambda: self.change_is_minimalistic(),
             text="Minimalistic Info",
             )
         self.minimalistic_info_switch.grid(row=0, column=0, pady=10, padx=20, sticky="nsew")
-
-        if cfg.is_minimalistic:
+        
+        if cfg.plain_text:
             self.minimalistic_info_switch.select()
-
-
+            
     def change_is_minimalistic(self):
-        cfg.is_minimalistic = not cfg.is_minimalistic
+        cfg.plain_text = not cfg.plain_text
         

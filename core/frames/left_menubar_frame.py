@@ -21,11 +21,40 @@ import customtkinter as ctk
 from core.windows.setting_window import SettingWindow
 from core.helpers import theme
 
+class DifficultyButton(ctk.CTkButton):
+    def __init__(
+        self,
+        master,
+        command,
+        text_color,
+        width=40,
+        height=30,
+        text="•",
+        font=("Arial", 30),
+        fg_color=theme.fg_color_frame_dark,
+        border_width = 0,
+    ):
+        super().__init__(
+            master=master,
+            width=width,
+            height=height,
+            text=text,
+            font=font,
+            fg_color=fg_color,
+            text_color=text_color,
+            border_width=border_width,
+            command=command
+        )
+        
+    def get_item(self):
+        return self.item
+
+
 class LeftmenubarFrame(ctk.CTkFrame):
-    def __init__(self, master, change_difficulty_event):
+    def __init__(self, master, change_difficulty):
         super().__init__(master, corner_radius=0)
 
-        self.change_difficulty_event = change_difficulty_event
+        self.change_difficulty = change_difficulty
 
         self.text_label = ctk.CTkLabel(master=self, text="Difficulty")
         self.text_label.grid(row=0, column=0, columnspan=1, padx=(0, 0), pady=10, sticky="nsew")
@@ -42,71 +71,59 @@ class LeftmenubarFrame(ctk.CTkFrame):
 
         self._difficulty_buttons = []
 
-        button_amauter_difficulty = ctk.CTkButton(
+        button_amauter_difficulty = DifficultyButton(
             master=self,
-            width=30,
-            height=30,
-            text="•",
-            font=("Arial", 30),
-            fg_color=theme.fg_color_frame_light,
+            fg_color=theme.fg_color_frame_dark_gray,
             text_color="#b0d8a4",
             border_width=1,
-            command=lambda: self.change_difficulty_event(0)
+            command=lambda: self.change_difficulty(0)
         )
         button_amauter_difficulty.grid(row=1, column=0, padx=(20, 20), pady=(10, 0), sticky="nsew")
         self._difficulty_buttons.append(button_amauter_difficulty)
 
-        button_intermediate_difficulty = ctk.CTkButton(
+        button_intermediate_difficulty = DifficultyButton(
             master=self,
-            width=40,
-            height=30,
-            text="•",
-            font=("Arial", 30),
-            fg_color=theme.fg_color_frame_dark,
             text_color="#fee191",
-            border_width=0,
-            command=lambda: self.change_difficulty_event(1)
+            command=lambda: self.change_difficulty(1)
         )
         button_intermediate_difficulty.grid(row=2, column=0, padx=(20, 20), pady=(10, 0), sticky="nsew")
         self._difficulty_buttons.append(button_intermediate_difficulty)
 
-        button_professional_difficulty = ctk.CTkButton(
+        button_professional_difficulty = DifficultyButton(
             master=self,
-            width=40,
-            height=30,
-            text="•",
-            font=("Arial", 30),
-            fg_color=theme.fg_color_frame_dark,
             text_color="#fd8060",
-            border_width=0,
-            command=lambda: self.change_difficulty_event(2)
+            command=lambda: self.change_difficulty(2)
         )
         button_professional_difficulty.grid(row=3, column=0, padx=(20, 20), pady=(10, 0), sticky="nsew")
         self._difficulty_buttons.append(button_professional_difficulty)
 
-        button_nightmare_difficulty = ctk.CTkButton(
+        button_nightmare_difficulty = DifficultyButton(
             master=self,
-            width=40,
-            height=30,
-            text="•",
-            font=("Arial", 30),
-            fg_color=theme.fg_color_frame_dark,
             text_color="#e84258",
-            border_width=0,
-            command=lambda: self.change_difficulty_event(3)
+            command=lambda: self.change_difficulty(3)
         )
         button_nightmare_difficulty.grid(row=4, column=0, padx=(20, 20), pady=(10, 0), sticky="nsew")
         self._difficulty_buttons.append(button_nightmare_difficulty)
+        
+        button_insane_difficulty = DifficultyButton(
+            master=self,
+            text_color="#000000",
+            command=lambda: self.change_difficulty(4)
+        )
+        button_insane_difficulty.grid(row=5, column=0, padx=(20, 20), pady=(10, 0), sticky="nsew")
+        self._difficulty_buttons.append(button_insane_difficulty)
 
         self.settings_window = None
-
 
     def get_difficulty_buttons(self):
         return self._difficulty_buttons
     
-
     def open_settings(self):
-        if self.settings_window is None or not self.settings_window.winfo_exists():
+        if self.settings_window is None:
             self.settings_window = SettingWindow(self)  # create window if its None or destroyed
-        else:
-            self.settings_window.focus()  # if window exists focus it
+        elif not self.settings_window.winfo_exists():
+            self.settings_window = SettingWindow(self)
+
+        self.settings_window.focus()
+        self.settings_window.attributes('-topmost', True)
+        

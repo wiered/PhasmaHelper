@@ -18,7 +18,9 @@
 
 # Difficulty buttons
 fg_color_frame_dark = "#212121"
-fg_color_frame_light = "#292929"
+fg_color_frame_dark_gray = "#292929"
+fg_color_frame_light_gray = "#2b2b2b"
+
 
 # buttons
 button_fg_color = "#1f6aa4"

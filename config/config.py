@@ -23,18 +23,17 @@ class Config:
     def __init__(self):
         self.read_config()
 
-
     def read_config(self):
         if not os.path.exists("./config/default_config.ini"):
             raise FileNotFoundError
         if not os.path.exists("./config/config.ini"):
-            os.system("cp .\config\default_config.ini .\config\config.ini")
+            os.system("copy .\config\default_config.ini .\config\config.ini")
         with open("./config/config.ini", "r") as config_file:
             config = configparser.ConfigParser()
             config.read_file(config_file)
-            self.is_minimalistic = bool(int(config.get('DEFAULT', 'is_minimalistic')))
+            
+            self.plain_text = bool(int(config.get('DEFAULT', 'plain_text')))
             self.appearance = config.get('DEFAULT', 'appearance')
             self.color_theme = config.get('DEFAULT', 'color_theme')
-
 
 cfg = Config()
