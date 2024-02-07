@@ -5,7 +5,7 @@
 Provides you with useful information about ghosts, their behaviors, 
 needed evidences, weaknesses and strategies against them.
 
-<img src="images/mainwindow.png" alt="screenshoot" width ="800"/>
+<img src="images/new_mainwindow.png" alt="screenshoot" width ="800"/>
 
 <div align="left">
 
