@@ -17,12 +17,12 @@
 """
 
 import textwrap
-import os
+import json
 
 import customtkinter as ctk
 from PIL import Image
 
-from core.helpers import lists, theme
+from core.utils import lists, themes
 
 OUIJI_BOARD_ICON = "./core/icons/ouija.png"
 PLAYING_CARDS_ICON = "./core/icons/cards.png"
@@ -267,7 +267,8 @@ class CursedItemsWindow(ctk.CTkToplevel):
         self.resizable(False, False)
         
         # setting up variables
-        self.cursed_items_dict = lists.CursedItemsDict()
+        with open('core\data\cursed_items.json', encoding='utf-8') as json_file:
+            self.cursed_items_dict = json.load(json_file)
         
         self.left_menu_bar_frame = CursedItemsLeftMenubarFrame(self, self.change_item)
         self.left_menu_bar_frame.grid(
@@ -343,6 +344,6 @@ class CursedItemsWindow(ctk.CTkToplevel):
         
         for button in self.left_menu_bar_frame.winfo_children():
             if button.item == item:
-                button.configure(fg_color=theme.button_fg_color)
+                button.configure(fg_color=themes.button_fg_color)
             else:
-                button.configure(fg_color=theme.button_fg_color_dark)
+                button.configure(fg_color=themes.button_fg_color_dark)

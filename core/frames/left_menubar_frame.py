@@ -19,7 +19,8 @@
 import customtkinter as ctk
 
 from core.windows.setting_window import SettingWindow
-from core.helpers import theme
+from core.utils import is_window_exists, themes
+
 
 class DifficultyButton(ctk.CTkButton):
     def __init__(
@@ -31,7 +32,7 @@ class DifficultyButton(ctk.CTkButton):
         height=30,
         text="•",
         font=("Arial", 30),
-        fg_color=theme.fg_color_frame_dark,
+        fg_color=themes.fg_color_frame_dark,
         border_width = 0,
     ):
         super().__init__(
@@ -53,6 +54,8 @@ class DifficultyButton(ctk.CTkButton):
 class LeftmenubarFrame(ctk.CTkFrame):
     def __init__(self, master, change_difficulty):
         super().__init__(master, corner_radius=0)
+        
+        self.master = master
 
         self.change_difficulty = change_difficulty
 
@@ -73,7 +76,7 @@ class LeftmenubarFrame(ctk.CTkFrame):
 
         button_amauter_difficulty = DifficultyButton(
             master=self,
-            fg_color=theme.fg_color_frame_dark_gray,
+            fg_color=themes.fg_color_frame_dark_gray,
             text_color="#b0d8a4",
             border_width=1,
             command=lambda: self.change_difficulty(0)
@@ -123,7 +126,23 @@ class LeftmenubarFrame(ctk.CTkFrame):
             self.settings_window = SettingWindow(self)  # create window if its None or destroyed
         elif not self.settings_window.winfo_exists():
             self.settings_window = SettingWindow(self)
-
-        self.settings_window.focus()
-        self.settings_window.attributes('-topmost', True)
+        
+        self.settings_window.focus()    
+        
+        
+    def destroy_settings_window(self):
+        if is_window_exists(self.settings_window):
+            self.settings_window.destroy()
+            self.settings_window = None
+            
+    def update_difficulty_buttons(self, old_difficulty, new_difficulty):
+        self._difficulty_buttons[old_difficulty].configure(
+            border_width=0,
+            fg_color=themes.fg_color_frame_dark
+        )
+        self._difficulty_buttons[new_difficulty].configure(
+            border_width=1,
+            fg_color=themes.fg_color_frame_dark_gray
+        )
+        
         

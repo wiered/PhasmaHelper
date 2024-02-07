@@ -16,9 +16,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-import json
-from typing import Any
-
 GHOSTS = [
     "Дух",
     "Мираж",
@@ -70,53 +67,4 @@ DIFFICULTIES = [
     "Nightmare", 
     "Insane"
     ]
-
-with open('.\core\data\evidences.json', encoding='utf-8') as json_file:
-    ghosts_by_evidences = json.load(json_file)
-
-
-class Ghosts_dict:
-    def __init__(self):
-        with open('core\data\ghosts.json', encoding='utf-8') as json_file:
-            self._dict = json.load(json_file)
-    
-
-    @property
-    def dict(self):
-        return self._dict
-    
-
-    @dict.setter
-    def dict(self, value):
-        return
-    
-
-    def reload(self):
-        with open('core\data\dict.json', encoding='utf-8') as json_file:
-            self._dict = json.load(json_file)
-
-
-    def get(self, value):
-        return self._dict.get(value)
-
-
-class CursedItemsDict:
-    def __init__(self):
-        with open('core\data\cursed_items.json', encoding='utf-8') as json_file:
-            self._dict = json.load(json_file)
-
-    @property
-    def dict(self):
-        return self._dict
-
-    @dict.setter
-    def dict(self, value):
-        return
-
-    def reload(self):
-        with open('core\data\dict.json', encoding='utf-8') as json_file:
-            self._dict = json.load(json_file)
-
-    def get(self, value):
-        return self._dict.get(value)
     

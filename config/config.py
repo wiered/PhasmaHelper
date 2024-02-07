@@ -18,22 +18,58 @@
 
 import configparser
 import os
+import sys
 
 class Config:
     def __init__(self):
+        self.set_config_path()
         self.read_config()
+            
+    @property
+    def config_path(self):
+        return self._config_path + '\\config.ini'
 
-    def read_config(self):
-        if not os.path.exists("./config/default_config.ini"):
-            raise FileNotFoundError
-        if not os.path.exists("./config/config.ini"):
-            os.system("copy .\config\default_config.ini .\config\config.ini")
-        with open("./config/config.ini", "r") as config_file:
+    def set_config_path(self):
+        self._config_path = ".\\config"
+        if "C:\Program Files" in sys.path[0]:
+            self._config_path = os.getenv('APPDATA') + '\\PhasmaHelper'
+        if not os.path.exists(self._config_path):
+            os.makedirs(self._config_path)
+    
+    def read_file(self):
+        with open(self.config_path, "r") as config_file:
             config = configparser.ConfigParser()
             config.read_file(config_file)
             
-            self.plain_text = bool(int(config.get('DEFAULT', 'plain_text')))
-            self.appearance = config.get('DEFAULT', 'appearance')
-            self.color_theme = config.get('DEFAULT', 'color_theme')
-
+            self.plain_text = bool(int(config.get('Default', 'plain_text')))
+            self.appearance = config.get('Default', 'appearance')
+            self.color_theme = config.get('Default', 'color_theme')
+            self.ghosts_window_alpha = float(config.get('Default', 'ghosts_window_alpha'))
+            self.cursed_items_window_alpha = float(config.get('Default', 'cursed_items_window_alpha'))
+    
+    def read_config(self):
+        if not os.path.exists("./config/default_config.ini"):
+            raise FileNotFoundError
+        if not os.path.exists(self.config_path):
+            os.system(f"copy .\config\default_config.ini {self.config_path}")
+        try:
+            self.read_file()
+        except:
+            raise FileNotFoundError(f"{self.config_path}")
+            # os.system("copy .\config\default_config.ini .\config\config.ini")
+            # self.read_file()
+    
+    # write to config file
+    def save_config(self):
+        with open(self.config_path, "w") as config_file:
+            config = configparser.RawConfigParser()
+            config.add_section('Default')
+            config.set('Default', 'plain_text', int(self.plain_text))
+            config.set('Default', 'appearance', self.appearance)
+            config.set('Default', 'color_theme', self.color_theme)
+            config.set('Default', 'ghosts_window_alpha', str(round(self.ghosts_window_alpha, 2)))
+            config.set('Default', 'cursed_items_window_alpha', str(round(self.cursed_items_window_alpha, 2)))
+            config.write(config_file)
+            
+            
 cfg = Config()

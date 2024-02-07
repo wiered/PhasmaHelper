@@ -16,7 +16,10 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
+from typing import List
 import customtkinter as ctk
+
+from core.utils import themes
 
 class GhostsFrame(ctk.CTkFrame):
     def __init__(self, master, get_ghost):
@@ -218,3 +221,21 @@ class GhostsFrame(ctk.CTkFrame):
         deogen._command = lambda: get_ghost(deogen._text)
         thaye._command = lambda: get_ghost(thaye._text)
     
+    def _update_button(self, button, is_active: bool,):
+        state = "normal" if is_active else "disabled"
+        _theme = (themes.button_fg_color 
+                  if is_active 
+                  else themes.button_fg_color_dark)
+
+        button.configure(state=state)
+        button.configure(fg_color=_theme)
+    
+    def update_buttons(self, possible_ghosts: List):
+        """ Enables all buttons for active ghosts
+
+        Args:
+            active_ghosts (List[str]): list of possible ghosts names
+        """
+        for button in self.winfo_children()[1:]:
+            self._update_button(button, button._text in possible_ghosts)
+

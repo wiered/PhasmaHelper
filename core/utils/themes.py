@@ -29,3 +29,12 @@ button_fg_color_dark = "#14446b"
 
 button_border_color_light = "#216fab"
 button_border_color_dark = "#185281"
+
+# Evidence buttons
+evidence_button_unknown = "#4a4d50"
+evidence_button_unknown_hover = "#6d7176"
+evidence_button_activated = "#2fa572"
+evidence_button_activated_hover = "#39cb8c"
+evidence_button_deactivated = "#bb2426"
+evidence_button_deactivated_hover = "#e12b2d"
+

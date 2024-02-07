@@ -30,7 +30,7 @@ HAUNTED_MIRROR_ICON = "./core/icons/mirror.png"
 MONKEY_PAW_ICON = "./core/icons/paw.png"
 
 class CursedItemsFrame(ctk.CTkFrame):
-    def __init__(self, master, width, show_window):
+    def __init__(self, master, width, create_cursed_items_window):
         super().__init__(master, width=width)
         
         self.label_tools = ctk.CTkLabel(master=self, text="Cursed Items")
@@ -65,7 +65,7 @@ class CursedItemsFrame(ctk.CTkFrame):
             pady=(10, 0), 
             sticky="w"
         )
-        self.ouija_borad_button._command = lambda: show_window("ouija_board")
+        self.ouija_borad_button._command = lambda: create_cursed_items_window("ouija_board")
             
         cards_icon= ctk.CTkImage(
             light_image=Image.open(PLAYING_CARDS_ICON),
@@ -88,7 +88,7 @@ class CursedItemsFrame(ctk.CTkFrame):
             pady=(10, 0), 
             sticky="w"
         )
-        self.cards_button._command = lambda: show_window("playing_cards")
+        self.cards_button._command = lambda: create_cursed_items_window("playing_cards")
         
         voodoo_doll_icon = ctk.CTkImage(
             light_image=Image.open(VOODO_DOLL_ICON),
@@ -111,7 +111,7 @@ class CursedItemsFrame(ctk.CTkFrame):
             pady=(10, 0), 
             sticky="w"
         )
-        self.voodoo_doll_button._command = lambda: show_window("voodoo_doll")
+        self.voodoo_doll_button._command = lambda: create_cursed_items_window("voodoo_doll")
         
         music_box_icon = ctk.CTkImage(
             light_image=Image.open(MUSIC_BOX_ICON),
@@ -134,7 +134,7 @@ class CursedItemsFrame(ctk.CTkFrame):
             pady=(10, 0), 
             sticky="w"
         )
-        self.music_box_button._command = lambda: show_window("music_box")
+        self.music_box_button._command = lambda: create_cursed_items_window("music_box")
         
         summoning_circle_icon = ctk.CTkImage(
             light_image=Image.open(SUMMONING_CIRCLE_ICON),
@@ -157,7 +157,7 @@ class CursedItemsFrame(ctk.CTkFrame):
             pady=(10, 0), 
             sticky="w"
         )
-        self.summoning_circle_button._command = lambda: show_window("summoning_circle")
+        self.summoning_circle_button._command = lambda: create_cursed_items_window("summoning_circle")
         
         haunted_mirror_icon = ctk.CTkImage(
             light_image=Image.open(HAUNTED_MIRROR_ICON),
@@ -181,7 +181,7 @@ class CursedItemsFrame(ctk.CTkFrame):
             pady=(10, 0), 
             sticky="w"
         )
-        self.haunted_mirror_button._command = lambda: show_window("haunted_mirror")
+        self.haunted_mirror_button._command = lambda: create_cursed_items_window("haunted_mirror")
         
         monkey_paw_icon = ctk.CTkImage(
             light_image=Image.open(MONKEY_PAW_ICON),
@@ -205,5 +205,5 @@ class CursedItemsFrame(ctk.CTkFrame):
             pady=(10, 10), 
             sticky="w",
         )
-        self.monkey_paw_button._command = lambda: show_window("monkey_paw")
+        self.monkey_paw_button._command = lambda: create_cursed_items_window("monkey_paw")
         

@@ -19,6 +19,8 @@
 import customtkinter as ctk
 
 from config import cfg
+from core.utils import is_window_exists
+
 
 class SettingWindow(ctk.CTkToplevel):
     def __init__(self, master):
@@ -26,6 +28,7 @@ class SettingWindow(ctk.CTkToplevel):
 
         self.title("Settings")
         self.after(250, lambda: self.iconbitmap('.\core\icons\logo.ico'))
+        self.after(250, lambda: self.focus())
 
         self.settings_frame = ctk.CTkFrame(self)
         self.settings_frame.grid(row=0, column=0, columnspan=1, padx=(20, 20), pady=10, sticky="nsew")
@@ -37,9 +40,64 @@ class SettingWindow(ctk.CTkToplevel):
             )
         self.minimalistic_info_switch.grid(row=0, column=0, pady=10, padx=20, sticky="nsew")
         
+        self.label_ghosts_window_alpha = ctk.CTkLabel(
+            master=self.settings_frame,
+            text="Ghosts Window Alpha",
+            )
+        self.label_ghosts_window_alpha.grid(row=1, column=0, padx=20, pady=(10, 0), sticky="nsew")
+        
+        self.label_cursed_items_window_alpha = ctk.CTkLabel(
+            master=self.settings_frame,
+            text="Cursed Items Window Alpha",
+            )
+        self.label_cursed_items_window_alpha.grid(row=3, column=0, padx=20, pady=(10, 0), sticky="nsew")
+        
+        self.ghosts_window_alpha_slider = ctk.CTkSlider(
+            master = self.settings_frame,
+            from_=0, 
+            to=1, 
+            command=self.change_ghosts_window_alpha
+            )
+        self.ghosts_window_alpha_slider.grid(
+            row=2, 
+            column=0, 
+            padx=20, 
+            pady=10, 
+            sticky="nsew"
+        )
+        self.ghosts_window_alpha_slider.set(cfg.ghosts_window_alpha)
+        
+        self.cursed_items_window_alpha_slider = ctk.CTkSlider(
+            master = self.settings_frame,
+            from_=0, 
+            to=1,
+            command=self.change_cursed_items_window_alpha
+            )
+        self.cursed_items_window_alpha_slider.grid(
+            row=4, 
+            column=0, 
+            padx=20, 
+            pady=10, 
+            sticky="nsew"
+        )
+        self.cursed_items_window_alpha_slider.set(cfg.cursed_items_window_alpha)
+        
         if cfg.plain_text:
             self.minimalistic_info_switch.select()
-            
+    
     def change_is_minimalistic(self):
         cfg.plain_text = not cfg.plain_text
+        
+    def change_ghosts_window_alpha(self, value):
+        cfg.ghosts_window_alpha = value
+        for window in self.master.master.ghosts_windows:
+            if is_window_exists(window):
+                window.attributes('-alpha', cfg.ghosts_window_alpha)
+        
+        self.change_cursed_items_window_alpha(value)
+        
+    def change_cursed_items_window_alpha(self, value):
+        cfg.cursed_items_window_alpha = value
+        if is_window_exists(self.master.master.cursed_items_window):
+            self.master.master.cursed_items_window.attributes('-alpha', cfg.cursed_items_window_alpha)
         

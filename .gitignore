@@ -140,7 +140,6 @@ core/qt.py
 core/timers.py
 
 # My Own Folders
-tests/
 old/
 temp/
 json_examples/

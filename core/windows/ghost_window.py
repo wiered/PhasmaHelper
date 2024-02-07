@@ -17,21 +17,27 @@
 """
 
 import textwrap
+import json
 
 import customtkinter as ctk
 
-from core.helpers import lists
+from core.utils import lists
 from config import cfg
 
 BORDER_WIDTH = 0
 
 
 class GhostInfoWindow(ctk.CTk):
-    def __init__(self, name):
+    def __init__(self, master, name):
         super().__init__()
+        
+        self.master = master
 
         self.title("Phasma Helper: %s" % name)
         self.iconbitmap(".\core\icons\logo.ico")
+        
+        with open('.\core\data\ghosts.json', encoding='utf-8') as json_file:
+            self.ghosts_dict = json.load(json_file)
         
         if cfg.plain_text:
             general_text = self.get_ghost_info(name)
@@ -41,19 +47,17 @@ class GhostInfoWindow(ctk.CTk):
         else:
             self.menu = TabviewFrame(master=self, name=name)
             self.menu.grid(row=1, column=0, columnspan=1, padx=(5, 5), pady=10, sticky="nsew") 
-
+    
+    def _get_ghost_data(self, name):
+            return self.ghosts_dict.get(name)
+    
     def get_ghost_info(self, name):
-        ghost_dict = lists.Ghosts_dict()
+        ghost_data = self._get_ghost_data(name)
 
-        behavior_text = ghost_dict.dict.get(name).get("behavior")
-        evidences_text = ghost_dict.dict.get(name).get("evidences")
-        advantages_text = ghost_dict.dict.get(name).get("advantages")
-        strategy_text = ghost_dict.dict.get(name).get("strategy")
-
-        behavior_text = textwrap.fill(behavior_text, width=100)
-        evidences_text = "; ".join(evidences_text)
-        advantages_text = textwrap.fill(advantages_text, width=100)
-        strategy_text = textwrap.fill(strategy_text, width=100)
+        behavior_text = textwrap.fill(ghost_data.get("behavior"), width=100)
+        evidences_text = "; ".join(ghost_data.get("evidences"))
+        advantages_text = textwrap.fill(ghost_data.get("advantages"), width=100)
+        strategy_text = textwrap.fill(ghost_data.get("strategy"), width=100)
 
         general_text = ""
         general_text += f"=================== {name} ====================\n"
@@ -66,40 +70,59 @@ class GhostInfoWindow(ctk.CTk):
         general_text += strategy_text
         
         return general_text
+    
+    def quit(self) -> None:
+        self.master.remove_ghost_window(self)
+        return super().quit()
+    
+    def destroy(self):
+        self.master.remove_ghost_window(self)
+        return super().destroy()
 
 
 class TabviewFrame(ctk.CTkTabview):
     def __init__(self, master, name):
         super().__init__(master, height=100)
         
-        ghost_dict = lists.Ghosts_dict()
+        with open('.\core\data\ghosts.json', encoding='utf-8') as json_file:
+            self.ghosts_dict = json.load(json_file)
         
         name = name
         
         self.add("Behavior")
         self.add("Advantages")
         self.add("Strategy")
-
-        evidences = ghost_dict.dict.get(name).get("evidences")
-        evidences_text = "; ".join(evidences)
+        
+        ghost_data = self._get_ghost_data(name)
+            
+        evidences_text = "; ".join(ghost_data.get("evidences"))
         
         # behavior tab
-        behavior_text = ghost_dict.dict.get(name).get("behavior")
-        behavior_text = evidences_text + "\n\n" + textwrap.fill(behavior_text, width=100)
+        
+        behavior_text = evidences_text + "\n\n"
+        behavior_text += textwrap.fill(ghost_data.get("behavior"), width=100)
+        
         self.behavior_label = ctk.CTkLabel(master=self.tab("Behavior"), text=behavior_text)
         self.behavior_label.grid(row=0, column=0, padx=20, pady=10)
         
         # set advantages tab
-        advantages_text = ghost_dict.dict.get(name).get("advantages")
-        advantages_text = evidences_text + "\n\n" + textwrap.fill(advantages_text, width=100)
+        advantages_text = evidences_text + "\n\n"
+        advantages_text += textwrap.fill(ghost_data.get("advantages"), width=100)
+        
         self.advantages_label = ctk.CTkLabel(master=self.tab("Advantages"), text=advantages_text)
         self.advantages_label.grid(row=0, column=0, padx=20, pady=10)
         
         # set strategy tab
-        strategy_text = ghost_dict.dict.get(name).get("strategy")
-        strategy_text = evidences_text + "\n\n" + textwrap.fill(strategy_text, width=100)
+        strategy_text = evidences_text + "\n\n"
+        strategy_text += textwrap.fill(ghost_data.get("strategy"), width=100)
+        
         self.strategy_label = ctk.CTkLabel(master=self.tab("Strategy"), text=strategy_text)
         self.strategy_label.grid(row=0, column=0, padx=20, pady=10)
+        
+        del ghost_data
+    
+    def _get_ghost_data(self, name):
+            return self.ghosts_dict.get(name)
         
         
 class TextFrame(ctk.CTkFrame):

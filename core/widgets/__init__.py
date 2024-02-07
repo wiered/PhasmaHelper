@@ -1,8 +1,23 @@
 import tkinter
 from typing import Any, Callable, Optional, Tuple, Union
+
 import customtkinter as ctk
 from customtkinter.windows.widgets.font import CTkFont
 from customtkinter.windows.widgets.image import CTkImage
+
+from core.utils.themes import *
+
+EVIDENCE_BUTTON_COLORS = {
+        0: evidence_button_unknown,
+        1: evidence_button_activated,
+        2: evidence_button_deactivated,
+    }
+
+EVIDENCE_BUTTON_HOVER_COLORS = {
+        0: evidence_button_unknown_hover,
+        1: evidence_button_activated_hover,
+        2: evidence_button_deactivated_hover,
+    }
 
 class EvidenceSwitch(ctk.CTkSwitch):
     def __init__(
@@ -69,7 +84,46 @@ class EvidenceSwitch(ctk.CTkSwitch):
     @property
     def name(self):
         return self._name
+
+
+class EvidenceButton(ctk.CTkButton):
+    def __init__(self, master, command, text):
+        super().__init__(master=master, text=text)
+        
+        self._evidence_state = 0
+        self._command = self.change_state
+        self.command = command
+        self._text = text
+        
+        self.configure(fg_color = EVIDENCE_BUTTON_COLORS[self.state])
+        self.configure(hover_color = EVIDENCE_BUTTON_HOVER_COLORS[self.state])
+        
+    @property
+    def state(self) -> int:
+        return self._evidence_state
     
+    @property
+    def text(self):
+        return self._text
+    
+    def reset(self):
+        self._evidence_state = 0
+        self.configure(fg_color = EVIDENCE_BUTTON_COLORS[self.state])
+        self.configure(hover_color = EVIDENCE_BUTTON_HOVER_COLORS[self.state])
+
+    def change_state(self):
+        self._evidence_state = (self._evidence_state + 1)%3
+        self.configure(fg_color = EVIDENCE_BUTTON_COLORS[self._evidence_state])
+        self.configure(hover_color = EVIDENCE_BUTTON_HOVER_COLORS[self._evidence_state])
+        self.command()
+        
+    def set_state(self, value):
+        if value < 0 or value > 2:
+            raise ValueError("Evidence button state must be 0, 1 or 2")
+        self._evidence_state = value
+        self.configure(fg_color = EVIDENCE_BUTTON_COLORS[self._evidence_state])
+        self.configure(hover_color = EVIDENCE_BUTTON_HOVER_COLORS[self._evidence_state])
+
 
 class CursedItemButton(ctk.CTkButton):
     def __init__(
@@ -135,3 +189,4 @@ class CursedItemButton(ctk.CTkButton):
     @property
     def item(self):
         return self._item
+    
