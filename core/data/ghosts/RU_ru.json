@@ -1,0 +1,333 @@
+{
+    "Spirit": {
+      "evidences": [
+        "EMF",
+        "Ghost Writing",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Благовония предотвращают атаку на 3 минуты, вместо 90 секунд"
+      ]
+    },
+    "Wraith": {
+      "evidences": [
+        "EMF",
+        "DOTS",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Не может наступить в соль, проходя по ней, он не оставляет отпечатков",
+        "Может телепортироваться к случайному игроку (пока не охотится), при этом оставит EMF 2 или 5, а так же провзаимодействует.",
+        "Не может иметь задания 'Заставить призрака пройтись по соли'"
+      ]
+    },
+    "Phantom": {
+      "evidences": [
+        "DOTS",
+        "Fingerprints",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Исчезает сразу после фото(но звуки гост эвента остаются), работает с DOTS, не работает во время охоты",
+        "На фотографии не будет призрака и искажений(но будет 3 звезды)",
+        "Длинные мерцания во время охот (1с до 2с вместо 0.3с до 1с), что делает призрака менее видимым.",
+        "Может подойти к случайному игроку где угодно на карте (пока не охотится) и совершить взаимодействия.",
+        "При этом оставит EMF 2.",
+        "При взгляде на привидение, рассудок падает на 0,4% каждую секунду вместо 0,2%"
+      ]
+    },
+    "Poltergeist": {
+      "evidences": [
+        "Fingerprints",
+        "Ghost Writing",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Бросает предметы с большей силой и дальностью броска (2 - 6 единиц мощности, вместо 1 - 3 единиц мощности)",
+        "Единственное привидение, которое может бросать несколько объектов одновременно",
+        "Очень неактивен в комнатах без предметов",
+        "Во время охоты гарантированно бросает объект в зоне досягаемости каждые 0.5 секунд.",
+        "Каждый брошенный объект уменьшает рассудок игоков вокруг на 2%."
+      ]
+    },
+    "Banshee": {
+      "evidences": [
+        "DOTS",
+        "Fingerprints",
+        "Ghost Orb"
+      ],
+      "behavior": [
+        "Туннельное зрение: охотится на одного игрока, пока тот не умрёт или не выйдет из игры(кибербуллинг)",
+        "Если игрок не находится в здании, призрак может начать обычную охоту.",
+        "Если цель умирает или покидает игру, выбирается новая цель.",
+        "Иногда можно услышать её крик с помощью параболического микрофона.",
+        "Гост эвент с пением её самый любимый.",
+        "Очень сильно любит своего избранника, да настолько, что постоянно крутится вокруг него.",
+        "Начинает охоту исключительно в зависимости от уровня рассудка своей цели(<50%).",
+        "В мультиплеере проверяет уровень рассудка только своей цели перед охотой.",
+        "При прикосновении к гост эвенту с пением, цель(исключительно цель) теряет 15% рассудка, вместо 10"
+      ]
+    },
+    "Jinn": {
+      "evidences": [
+        "EMF",
+        "Fingerprints",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "Во время охоты мгновенно ускоряется до 2.1м/c, если видит игрока. Электро щиток должен быть включен.",
+        "Может использовать способность, снижая рассудок всех игроков в комнате с ним на 25%.",
+        "При этом оставляет EMF 2 на электро щитке.",
+        "Не может отключить электро щиток напрямую, только если включить слишком много ламп."
+      ]
+    },
+    "Mare": {
+      "evidences": [
+        "Ghost Orb",
+        "Ghost Writing",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Не может включить свет.",
+        "Более склонна выключать свет, нежели чем соверщать иные взаимодействия",
+        "Любит выбиваить лампочки и эвенты с красным светом.",
+        "Если находится в помещении без сета, то может начать охотиться при 60% рассудка игроков(иначе <50%).",
+        "Может мгновенно выключить свет, включенный игроком. (Не ведитесь на подобное с гостами, которые так же выключают свет).",
+        "Если включить свет в её комнате, то шанс смены комнаты и роуминга увеличивется."
+      ]
+    },
+    "Revenant": {
+      "evidences": [
+        "Ghost Orb",
+        "Ghost Writing",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "При обнаружении игрока(LOS, оборудование, голос) разгоняется до 3м/c.",
+        "Пока не гонится за игроками замедляется до 1м/c в течении 2.7с.",
+        "Сохраняет свою скорость(3м/с), до последнего известного ему местонахождения игрока."
+      ]
+    },
+    "Shade": {
+      "evidences": [
+        "EMF",
+        "Ghost Writing",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "Может начать охоту при среднем рассудке <35%",
+        "Пока находится в комнате с игроками(>1) меньший щанс взаимодействий, эвентов и охоты.",
+        "За каждый потерянный процент рассудка, шанс эвентов увеличивается на 2%(вплоть до 100%)."
+      ]
+    },
+    "Demon": {
+      "evidences": [
+        "Fingerprints",
+        "Ghost Writing",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "Мгновенная охота: Небольшой шанс начать охоту при любом рассудке. Долгий кулдаун.",
+        "Эффективный радиус распятия на 50% больше.(I - 4.5М, II - 6м, III - 7.5м).",
+        "Перерым между охотами составляет всего 20 секунд вместо 25 секунд.",
+        "Благовония останавливают охоту всего на 1 минуту."
+      ]
+    },
+    "Yurei": {
+      "evidences": [
+        "DOTS",
+        "Ghost Orb",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "Если использовать благовоние рядом с призраком, то он побкжит в свою комнату и не будет выходить оттуда 90 секунд.",
+        "Может закрыит двери даже без гост эвента. Так же имеет уникальное взаимодействие с дверью - двойной щелчок.",
+        "Гост эвенты и охота снижает рассудок в два раза быстрее.",
+        "Не может использовать свои способности, когда в его текущей комнате нет дверей."
+      ]
+    },
+    "Oni": {
+      "evidences": [
+        "EMF",
+        "DOTS",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "Чаще других призраков делает гост эвенты.",
+        "Не делает эвент с облачком.",
+        "O-no!: при прикосновении с гост эвентом уменьщает рассудок страдальца на 20%, вместо 10%.",
+        "Во время охоты чаще и короче мелькает. Призрак виден почти всё время.",
+        "Предпочитает проявляться в полном облике во время духовных событий."
+      ]
+    },
+    "Yokai": {
+      "evidences": [
+        "DOTS",
+        "Ghost Orb",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Может инициировать раннюю охоту при среднем уромне рассудка <80%, если рядом разговаривают игроки.",
+        "Во время охоты он может слышать только звуки в радиусе 2 метров."
+      ]
+    },
+    "Hantu": {
+      "evidences": [
+        "Fingerprints",
+        "Ghost Orb",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "Скорость призрака зависит от температуры в комнате во время охоты. Чем холоднее, тем быстрее он двигается.",
+        "Можено видеть пар изо рта призрака во время охоты, если щиток выключен.",
+        "Не может прятать минусовую температуру на кошмаре или безумии.",
+        "Не может включить электричество в доме.",
+        "Скорость в зависимости от температуры: 1,4 м/с = 15°C+ | 1,75 м/с = 12°C | 2,1 м/с = 9°C | 2,3 м/с = 6°C | 2,5 м/с = 3°C | 2,7 м/с = 0°C",
+        "Удвоенный шанс выключения электричества."
+      ]
+    },
+    "Goryo": {
+      "evidences": [
+        "EMF",
+        "DOTS",
+        "Fingerprints"
+      ],
+      "behavior": [
+        "D.O.T.S. виден только через видеокамеру и только если вы в другой комнате.",
+        "Не может сменить любимую комнату и отходить от неё на большие расстояния.",
+        "Не прячет D.O.T.S. на кошмаре/безумии"
+      ]
+    },
+    "Myling": {
+      "evidences": [
+        "EMF",
+        "Fingerprints",
+        "Ghost Writing"
+      ],
+      "behavior": [
+        "More sounds on the parabolic mic",
+        "Twinkletoes: During a hunt, all hunting sounds can only be heard when 12m or closer",
+        "Flashlight Test: Drop your flashlight on the floor near you, and observe when it flickers.",
+        "If it flickers before you can hear it, you may have a Myling. Make sure you are on the same",
+        "floor as the ghost when conducting this test; if the ghost is above or below you, this test won't be effective."
+      ]
+    },
+    "Onryo": {
+      "evidences": [
+        "Ghost Orb",
+        "Spirit Box",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "Firestarter: Can initiate a hunt when any flames/candles are extinguished regardless of average sanity.",
+        "It will attempt to hunt every third flame it blows out.",
+        "Crucifix/Candle Test: Put a lit Candle on top of a Crucifix and keep it lit.",
+        "Onryos will always blow out the Candle before using the Crucifix.",
+        "If the ghost uses the Crucifix before blowing out the Candle, you can be sure it is not an Onryo.",
+        "Lit candles act as crucifixes. Blown out when successfuly preventing a hunt",
+        "Chance for the ability increases every time a player is killed"
+      ]
+    },
+    "The Twins": {
+      "evidences": [
+        "EMF",
+        "Spirit Box",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "Main twin primary stays in the ghost room, makes freezing and Spirit Box",
+        "Secondary twin wanders around and interacts with the environment, but cannot interact with motion sensors, Spirit Box or cause freezing temps",
+        "Either Twin can initiate a Hunt but not simultaneously",
+        "Crucifix only checks for main twin regardless of which will hunt",
+        "During hunts the main twin is slower (by 10%) and the decoy is faster (by 10%)"
+      ]
+    },
+    "Raiju": {
+      "evidences": [
+        "EMF",
+        "DOTS",
+        "Ghost Orb"
+      ],
+      "behavior": [
+        "Jacked Up: While hunting it has an increased movement speed when it touches electronic player equipment (held or on the floor)",
+        "Head mounted cameras, motion sensors and sound sensors do not count towards the speed boost",
+        "Can initiate a hunt at an average sanity of 65% if there is electrical equipment nearby",
+        "Abilities only affected by player equipment and not location electrics like TVs or lights",
+        "Hunting affects light flicker for a longer range than other ghosts (15 m instead of 10 m)"
+      ]
+    },
+    "Obake": {
+      "evidences": [
+        "EMF",
+        "Fingerprints",
+        "Ghost Orb"
+      ],
+      "behavior": [
+        "Shapeshifter: During a hunt, it has a 6.66% chance each time it flickers to shapeshift into a different ghost form and back.",
+        "This is guaranteed to happen at least once per hunt",
+        "Reduced chance of 75% to leave Ultraviolet",
+        "Low chance to leave fingerprints with 6 fingers",
+        "Can leave double fingerprints on light switches, and 5 fingerprints on prison doors and keyboards (instead of 4)",
+        "Always gives the Ultraviolet evidence on nightmare or higher difficulty",
+        "Fingerprints have a 50% chance to disappear earlier (60s) than of other ghosts (120s)"
+      ]
+    },
+    "The Mimic": {
+      "evidences": [
+        "Fingerprints",
+        "Spirit Box",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "Mimic: Picks another ghost type to imitate and changes it occasionally, copying almost all of their abilities and behaviors",
+        "Has ghost orbs as 4th evidence which are always present, regardless of which ghost is being imitated",
+        "Cannot switch picked ghost during a hunt"
+      ]
+    },
+    "Moroi": {
+      "evidences": [
+        "Ghost Writing",
+        "Spirit Box",
+        "Freezing Temp"
+      ],
+      "behavior": [
+        "When smudged during a hunt it wanders for around 12s",
+        "Cursed Voice: Curses any player whom it responds over the Spirit Box or Paramic.",
+        "Cursed players constantly lose sanity over time (0.3%/s).",
+        "Leaving the house stops the sanity drain, and taking sanity pills lifts the curse.",
+        "Candles will not prevent sanity drain, which is why the above test is effective",
+        "Walking speed is affected by average team sanity. The lower the sanity, the faster it is",
+        "Always gives the Spirit Box evidence on nightmare or higher difficulty",
+        "Players can be cursed again after being cured",
+        "Speed based on Sanity: 1.4 m/s sanity <= 45% | 1.7 m/s sanity <= 30% | 1.8 m/s sanity <= 23% | 1.95 m/s sanity <= 13% | 2.1 m/s sanity = 0%"
+      ]
+    },
+    "Deogen": {
+      "evidences": [
+        "DOTS",
+        "Ghost Writing",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Can only initiate a hunt at an average sanity below 40%",
+        "Targets the closest player, moving very rapidly towards them (2.7 m/s) regardless of where they hide",
+        "Slows down immensely approximately 4m away from its target",
+        "Spirit Box interaction: Heavy breathing. You must stand within 1m of the ghost",
+        "Always gives the Spirit Box evidence on nightmare or higher difficulty",
+        "Increased chance to give D.O.T.S. and Ghost Writing as evidence."
+      ]
+    },
+    "Thaye": {
+      "evidences": [
+        "DOTS",
+        "Ghost Orb",
+        "Ghost Writing"
+      ],
+      "behavior": [
+        "Can initiate a hunt at an average sanity of 70% but decreases with age down to 15% at its oldest age.",
+        "Ages over time while a player is either in the same room as the ghost or in the ghost room",
+        "Becomes less active and slower the older it gets",
+        "Can observe the age of a Thaye change using the Ouiji Board"
+      ]
+    }
+  }
