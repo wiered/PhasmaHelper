@@ -17,6 +17,19 @@ needed evidences, weaknesses and strategies against them.
 + Display ghost's behavior, advantages and strategy against them
 + Read about cursed items
 
+# Instalation
+
+## Portable
+Just unzip anywhere.
+
+## Installer
+Run installer.exe and follow the installer instructions.
+
+# Portable vs Installer
++ Installable version loads faster, and saves the config in the %appdata% if installed in `C:\Program Files`
++ Portable contains less files, and saves the config to `./config`
+
+
 # Screenshots
 
 <div align="center">
