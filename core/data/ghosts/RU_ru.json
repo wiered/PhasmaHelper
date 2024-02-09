@@ -205,11 +205,10 @@
         "Ghost Writing"
       ],
       "behavior": [
-        "More sounds on the parabolic mic",
-        "Twinkletoes: During a hunt, all hunting sounds can only be heard when 12m or closer",
-        "Flashlight Test: Drop your flashlight on the floor near you, and observe when it flickers.",
-        "If it flickers before you can hear it, you may have a Myling. Make sure you are on the same",
-        "floor as the ghost when conducting this test; if the ghost is above or below you, this test won't be effective."
+        "Чаще щепчет в параболический микрофон.",
+        "Во время охоты все звуки охоты можно услышать только на расстоянии 12 метров или ближе",
+        "Тест с фонариком: Положите фонарик на пол возле вас и наблюдайте его мерцание.",
+        "Если фонарки мерцает, а призрака не слышно, то это мюлинг."
       ]
     },
     "Onryo": {
@@ -219,13 +218,14 @@
         "Freezing Temp"
       ],
       "behavior": [
-        "Firestarter: Can initiate a hunt when any flames/candles are extinguished regardless of average sanity.",
-        "It will attempt to hunt every third flame it blows out.",
-        "Crucifix/Candle Test: Put a lit Candle on top of a Crucifix and keep it lit.",
-        "Onryos will always blow out the Candle before using the Crucifix.",
-        "If the ghost uses the Crucifix before blowing out the Candle, you can be sure it is not an Onryo.",
-        "Lit candles act as crucifixes. Blown out when successfuly preventing a hunt",
-        "Chance for the ability increases every time a player is killed"
+        "После того, как призрак задует свечу он может начать охоту, причём даже при полном рассудке.",
+        "После каждого третьего задутого им пламени, начинает охоту.",
+        "Тест с креситом: Расставьте свечи по комнате(радиус защиты свечей от Онрё 4м). Положите в комнату крест.",
+        "После трёх задутых свечей крест сгорит.",
+        "Если призрак использует крест перед тем, как задуть свечу, можно быть уверенным, что это не Онрё.",
+        "Аналогично. Если постоянно держать свечи зажжёными, то призрак не будет атаковать.",
+        "Зажженные свечи действуют как кресты.",
+        "Шанс использования способности увеличивается каждый раз, когда игрок убит."
       ]
     },
     "The Twins": {
@@ -235,11 +235,12 @@
         "Freezing Temp"
       ],
       "behavior": [
-        "Main twin primary stays in the ghost room, makes freezing and Spirit Box",
-        "Secondary twin wanders around and interacts with the environment, but cannot interact with motion sensors, Spirit Box or cause freezing temps",
-        "Either Twin can initiate a Hunt but not simultaneously",
-        "Crucifix only checks for main twin regardless of which will hunt",
-        "During hunts the main twin is slower (by 10%) and the decoy is faster (by 10%)"
+        "Основной близнец находится в комнате призрака. Он даёт минусовую температуру, радиоприёмник и EMF 5. Радиус взаимодействия - 3м.",
+        "'Второй близнец' - это лишь второй радиус взаимодействия в 16 метров. Даёт лишь EMF 5.",
+        "Любой из близнецов может начать охоту, но не одновременно",
+        "Крест предотвращает охоту любого близнеца, только если лежит под основным близнецом.",
+        "Во время охоты главный близнец медленнее (на 10%), а второй быстрее (на 10%)",
+        "Тест с крестом: Если под вами крест и призрак успешно начал охоту(не сжёг крест) в радиусе креста, то перед вами близнецы."
       ]
     },
     "Raiju": {
@@ -249,11 +250,10 @@
         "Ghost Orb"
       ],
       "behavior": [
-        "Jacked Up: While hunting it has an increased movement speed when it touches electronic player equipment (held or on the floor)",
-        "Head mounted cameras, motion sensors and sound sensors do not count towards the speed boost",
-        "Can initiate a hunt at an average sanity of 65% if there is electrical equipment nearby",
-        "Abilities only affected by player equipment and not location electrics like TVs or lights",
-        "Hunting affects light flicker for a longer range than other ghosts (15 m instead of 10 m)"
+        "Скорость призрака во время охоты увеличивается(до 2.5м/c), если рядом есть включенная электроника.",
+        "Может начать охоту при среднем рассудке 65%(вместо 50%), если рядом с ним(в его комнате) есть электроника.",
+        "Способности влияют только на оборудование игроков, а не на электрические устройства на месте, такие как телевизоры или свет",
+        "Охота влияет на мерцание света на большем расстоянии, чем у других призраков (15 м вместо 10 м)"
       ]
     },
     "Obake": {
@@ -263,13 +263,13 @@
         "Ghost Orb"
       ],
       "behavior": [
-        "Shapeshifter: During a hunt, it has a 6.66% chance each time it flickers to shapeshift into a different ghost form and back.",
-        "This is guaranteed to happen at least once per hunt",
-        "Reduced chance of 75% to leave Ultraviolet",
-        "Low chance to leave fingerprints with 6 fingers",
-        "Can leave double fingerprints on light switches, and 5 fingerprints on prison doors and keyboards (instead of 4)",
-        "Always gives the Ultraviolet evidence on nightmare or higher difficulty",
-        "Fingerprints have a 50% chance to disappear earlier (60s) than of other ghosts (120s)"
+        "Shapeshifter: Во время охоты у неё есть 6,66% шанс при каждом мерцании превратиться в другую форму призрака и вернуться обратно.",
+        "Это гарантированно происходит хотя бы раз за охоту",
+        "Сниженный шанс на 75% оставить Ультрафиолет",
+        "Небольшой шанс оставить отпечатки пальцев с шестью пальцами",
+        "Может оставить двойные отпечатки пальцев на выключателях света и 5 отпечатков на дверях тюрьмы и клавиатурах (вместо 4)",
+        "Всегда дает улику Ультрафиолета на кошмарной или более высокой сложности",
+        "Отпечатки пальцев имеют 50% шанс исчезнуть раньше (60 с) чем у других призраков (120 с)"
       ]
     },
     "The Mimic": {
@@ -279,9 +279,9 @@
         "Freezing Temp"
       ],
       "behavior": [
-        "Mimic: Picks another ghost type to imitate and changes it occasionally, copying almost all of their abilities and behaviors",
-        "Has ghost orbs as 4th evidence which are always present, regardless of which ghost is being imitated",
-        "Cannot switch picked ghost during a hunt"
+        "Mimic: Выбирает другой тип призрака для имитации и время от времени меняет его, копируя практически все их способности и поведение.",
+        "Всегда имеет призрачные огоньки, даже если играете без улик.",
+        "Не может сменить призрака во время охоты."
       ]
     },
     "Moroi": {
@@ -291,15 +291,16 @@
         "Freezing Temp"
       ],
       "behavior": [
-        "When smudged during a hunt it wanders for around 12s",
-        "Cursed Voice: Curses any player whom it responds over the Spirit Box or Paramic.",
-        "Cursed players constantly lose sanity over time (0.3%/s).",
-        "Leaving the house stops the sanity drain, and taking sanity pills lifts the curse.",
-        "Candles will not prevent sanity drain, which is why the above test is effective",
-        "Walking speed is affected by average team sanity. The lower the sanity, the faster it is",
-        "Always gives the Spirit Box evidence on nightmare or higher difficulty",
-        "Players can be cursed again after being cured",
-        "Speed based on Sanity: 1.4 m/s sanity <= 45% | 1.7 m/s sanity <= 30% | 1.8 m/s sanity <= 23% | 1.95 m/s sanity <= 13% | 2.1 m/s sanity = 0%"
+        "Если зажечь благовоние возле призрака во время охоты, он потеряет вас на ~8 секунд(вместо 5).",
+        "Проклятый голос: Проклинает любого игрока, которому он отвечает через Spirit Box или параболический.",
+        "Проклятые игроки постоянно теряют рассудок со временем (0,3%/с), если находятся в доме.",
+        "Снять проклятие можно съев таблетки(адреналин и жир тоже подойдут).",
+        "Проверка проклятия: сядьте подальше от комнаты призрака, включите в комнате свет. Если ваш рассудок всё равно падает, то это Морой.",
+        "Скорость ходьбы зависит от среднего рассудка команды. Чем ниже рассудок, тем быстрее призрак.",
+        "Всегда дает улику радиоприёмника на кошмарной или более высокой сложности.",
+        "Игроки могут быть прокляты снова после исцеления",
+        "Скорость зависит от Рассудка: 1,4 м/с рассудок <= 45% | 1,7 м/с рассудок <= 30% | 1,8 м/с рассудок <= 23% | 1,95 м/с рассудок <= 13% | 2,1 м/с рассудок = 0%",
+        "Как отличить от Тайе: призрак будет постепенно ускоряться, если видит вас. Тайе не ускоряется, если видит игрока."
       ]
     },
     "Deogen": {
@@ -309,12 +310,12 @@
         "Spirit Box"
       ],
       "behavior": [
-        "Can only initiate a hunt at an average sanity below 40%",
-        "Targets the closest player, moving very rapidly towards them (2.7 m/s) regardless of where they hide",
-        "Slows down immensely approximately 4m away from its target",
-        "Spirit Box interaction: Heavy breathing. You must stand within 1m of the ghost",
-        "Always gives the Spirit Box evidence on nightmare or higher difficulty",
-        "Increased chance to give D.O.T.S. and Ghost Writing as evidence."
+        "Может начать охоту только при среднем рассудке ниже 40%",
+        "Всегда знает, где находятся игроки. Бежит к ним со скоростью 2.7м/c.",
+        "Практически останавливается приблизительно на расстоянии 4 м от своей цели.",
+        "Взаимодействие с Spirit Box: Тяжелое дыхание. Вы должны стоять в пределах 1м от призрака",
+        "Всегда дает улику Spirit Box на кошмарной или более высокой сложности",
+        "Увеличенный шанс получения улик D.O.T.S. и Дневника."
       ]
     },
     "Thaye": {
@@ -324,10 +325,10 @@
         "Ghost Writing"
       ],
       "behavior": [
-        "Can initiate a hunt at an average sanity of 70% but decreases with age down to 15% at its oldest age.",
-        "Ages over time while a player is either in the same room as the ghost or in the ghost room",
-        "Becomes less active and slower the older it gets",
-        "Can observe the age of a Thaye change using the Ouiji Board"
+        "Может начать охоту при среднем рассудке 75%, но снижается с возрастом до 15% в самом старшем возрасте.",
+        "Стареет со временем, когда игрок находится в комнате призрака",
+        "Становится менее активным и медленным с возрастом",
+        "Можно наблюдать за возрастом Thaye, используя доску Ouiji"
       ]
     }
   }
