@@ -19,7 +19,7 @@
 import customtkinter as ctk
 
 from config import cfg
-from core.utils import is_window_exists
+from core.utils import is_window_exists, read_data
 
 
 class SettingWindow(ctk.CTkToplevel):
@@ -82,8 +82,25 @@ class SettingWindow(ctk.CTkToplevel):
         )
         self.cursed_items_window_alpha_slider.set(cfg.cursed_items_window_alpha)
         
+        self.language_button = ctk.CTkButton(
+            master=self.settings_frame,
+            text = "Language: EN_en"
+        )
+        self.language_button.grid(row=5, column=0, padx=20, pady=(10, 20), sticky="nsew")
+        self.language_button._command = lambda: self.change_language(self.language_button)
+        
         if cfg.plain_text:
             self.minimalistic_info_switch.select()
+            
+    def change_language(self, language_button):
+        if "EN_en" in language_button.cget("text"):
+            read_data("RU_ru")
+            language_button.configure(text = "Language: RU_ru")
+            self.master.master.ghosts_frame.draw_page()
+        elif "RU_ru" in language_button.cget("text"):
+            read_data("EN_en")
+            language_button.configure(text = "Language: EN_en")
+            self.master.master.ghosts_frame.draw_page()
     
     def change_is_minimalistic(self):
         cfg.plain_text = not cfg.plain_text

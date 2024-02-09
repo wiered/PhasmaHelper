@@ -43,21 +43,48 @@ GHOSTS = [
     "Тайэ"
 ]
 
+GHOSTS_EN = [
+    "Spirit",
+    "Wraith",
+    "Phantom",
+    "Poltergeist",
+    "Banshee",
+    "Jinn",
+    "Mare",
+    "Revenant",
+    "Shade",
+    
+    "Demon",
+    "Yurei",
+    "Oni",
+    "Yokai",
+    "Hantu",
+    "Goryo",
+    "Myling",
+    "Onryo",
+    "The Twins",
+    
+    "Raiju",
+    "Obake",
+    "The Mimic",
+    "Moroi",
+    "Deogen",
+    "Thaye",
+]
+
 EVIDENCES = [
-    "EMF",
+    "EMF 5",
     "Spirit Box", 
-    "Fingerprints",
-    "Ghost Orb",
-    "Ghost Writing",
-    "Freezing Temp",
+    "Ultra V.",
+    "Orbs",
+    "Writing",
+    "Freezing",
     "DOTS"
 ]
 
 TABS = [
     "behavior",
     "evidences",
-    "advantages",
-    "strategy"
 ]
 
 DIFFICULTIES = [
@@ -67,4 +94,3 @@ DIFFICULTIES = [
     "Nightmare", 
     "Insane"
     ]
-    

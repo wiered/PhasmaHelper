@@ -22,7 +22,10 @@ fg_color_frame_dark_gray = "#292929"
 fg_color_frame_light_gray = "#2b2b2b"
 
 
-# buttons
+# GhostInfoFrame
+ghost_info_frame_deactivated = "#333333"
+ghost_info_frame_activated = "#555555"
+
 button_fg_color = "#1f6aa4"
 button_fg_color_light = "#298bd6"
 button_fg_color_dark = "#14446b"

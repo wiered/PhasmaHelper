@@ -16,14 +16,15 @@ class Ghost:
     evidences: List[str]
     speed: int
     behavior: str
-    advantages: str
-    strategy: str
     
     def has_evidences(self, evidences):
         return all(evidence in self.evidences for evidence in evidences)
     
     def has_any_evidence(self, evidences):
         return any(evidence in self.evidences for evidence in evidences)
+    
+    def __repr__(self) -> str:
+        return f"name: {self.name}  evds: {self.evidences}\n"
     
     
 class EvidencesManager:
@@ -117,30 +118,30 @@ class EvidencesManager:
     
     def check_forced_evidences(self, difficulty, possible_ghosts):   
         if len(self.activated_evidences) > 5 - difficulty:  
-            return ["Мимик"]
+            return ["The Mimic"]
         
         possible_ghosts = self.remove_ghosts(
             possible_ghosts, 
-            "Ghost Orb", 
-            ["Мимик"]
+            "Orbs", 
+            ["The Mimic"]
             )
         
         possible_ghosts = self.remove_ghosts(
             possible_ghosts, 
             "Spirit Box", 
-            ["Морой", "Деоген"]
+            ["Moroi", "Deogen"]
             )
 
         possible_ghosts = self.remove_ghosts(
             possible_ghosts, 
-            "Fingerprints", 
-            ["Обакэ"]
+            "Ultra V.", 
+            ["Obake"]
             )
         
         possible_ghosts = self.remove_ghosts(
             possible_ghosts, 
-            "Freezing Temp", 
-            ["Ханту"]
+            "Freezing", 
+            ["Hantu"]
             )
         
         return possible_ghosts
@@ -169,8 +170,10 @@ class EvidencesManager:
         with open('.\core\data\evidences.json', encoding='utf-8') as json_file:
             self.ghosts_by_evidences = json.load(json_file)
             
-        with open('.\core\data\ghosts.json', encoding='utf-8') as json_file:
+        with open('.\core\data\ghosts\EN_en.json', encoding='utf-8') as json_file:
             ghosts_dict = json.load(json_file)
+            
+        ghosts_dict = ghosts_dict.get("More")
             
         for ghost_name in ghosts_dict:
             ghost_data = ghosts_dict.get(ghost_name)
@@ -179,8 +182,6 @@ class EvidencesManager:
                     name=ghost_name,
                     evidences=ghost_data.get("evidences"),
                     behavior=ghost_data.get("behavior"),
-                    advantages=ghost_data.get("advantages"),
-                    strategy=ghost_data.get("strategy"),
                     speed=0,
                 )
             )

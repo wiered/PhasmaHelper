@@ -15,212 +15,266 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-
+from copy import copy
 from typing import List
 import customtkinter as ctk
 
-from core.utils import themes
+from core.utils import themes, get_ghost_data, adjust_lines_lenght, read_data
+from core.utils import lists
+
+
+class GhostInfoFrame(ctk.CTkFrame):
+    def __init__(self, master, name, get_ghost):
+        super().__init__(master)
+        
+        self.state = True
+        self.name = name
+        self.get_ghost = get_ghost
+        
+        self.label_name = ctk.CTkLabel(master=self, text=name, width=350)
+        self.label_name.grid(row=0, column=0, columnspan=4, padx=10, pady=0, sticky="w")
+        
+        self.label_evidences = ctk.CTkLabel(master=self, text="EMF, Spitit Box, DOTS")
+        self.label_evidences.grid(row=1, column=0, columnspan=4, padx=5, pady=0, sticky="w")
+        
+        self.label_behavior = ctk.CTkLabel(master=self, text="Smudge sticks stop attacks for 3 min instead of 1.5 min")
+        self.label_behavior.grid(row=2, column=0, columnspan=4, padx=5, pady=0, sticky="w")
+        
+        self.more_button = ctk.CTkButton(
+            master=self,
+            width=110,
+            text="More...",
+        )
+        self.more_button.grid(row=3, column=0, columnspan=3, padx=(0, 0), pady=0, sticky="nsew")
+        
+        self.cross_off_button = ctk.CTkButton(
+            master=self,
+            width=20,
+            text="-",
+        )
+        self.cross_off_button.grid(row=3, column=3, columnspan=1, padx=(0, 0), pady=0, sticky="nsew")
+        self.cross_off_button.configure(
+            fg_color=("#ff0000", "#ff0000"),
+            font=("Arial", 20)
+        )
+        self.cross_off_button._command = lambda: self.change_state()
+        
+        self.get_data()
+    
+    def clear(self):
+        self.label_name.configure(text = "")
+        self.label_evidences.configure(text = "")
+        self.label_behavior.configure(text = "\n\n\n\n")
+    
+    def set_name(self, name):
+        self.name = name
+        self.get_data()
+    
+    def get_data(self):
+        self.clear()
+        
+        self.label_name.configure(
+            text = self.name
+        )
+        
+        data = get_ghost_data(self.name)
+        evidences = data.get("evidences")
+        self.label_evidences.configure(
+            text = ", ".join(evidences)
+        )
+        
+        behavior_data = adjust_lines_lenght(data.get("behavior"))
+        self.label_behavior.configure(
+            text = "\n".join(behavior_data),
+            justify = 'left'
+        )
+
+        self.more_button._command = lambda: self.get_ghost(self.name)
+        
+        if self.name == "Null":
+            self.more_button.configure(
+                state = "disabled"
+            )
+            self.cross_off_button.configure(
+                state = "disabled"
+            )
+        else:
+            self.more_button.configure(
+                state = "normal"
+            )
+            self.cross_off_button.configure(
+                state = "normal"
+            )
+
+    def change_state(self):
+        if self.state:
+            self.disable()
+        else:
+            self.enable()
+            
+    def enable(self):
+        self.clear()
+        self.state = True
+        self.label_name.configure(
+            font = ("Arial", 15)
+            )
+        self.get_data()
+        self.configure(
+            fg_color = themes.ghost_info_frame_activated
+        )
+        
+    def disable(self):
+        self.clear()
+        self.state = False
+        vowels = {"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}
+        article = "an" if self.name[0] in vowels else "a"
+        self.label_name.configure(
+            text=f"Not {article} {self.name}",
+            font = ("Arial", 20)
+            )
+        self.label_evidences.configure(text="")
+        self.label_behavior.configure(text="\n\n\n")
+        self.configure(
+            fg_color = themes.ghost_info_frame_deactivated
+        )
+    
 
 class GhostsFrame(ctk.CTkFrame):
     def __init__(self, master, get_ghost):
         super().__init__(master)
-
-        self.label_spirits = ctk.CTkLabel(master=self, text="SPIRITS")
-        self.label_spirits.grid(row=0, column=0, columnspan=1, padx=10, pady=10, sticky="")
-
-        spirit = ctk.CTkButton(
+        read_data("EN_en")
+        self.possible_ghosts = copy(lists.GHOSTS_EN)
+        
+        self.page = 0
+        
+        self.previous_page_button = ctk.CTkButton(
             master=self,
-            width=110,
-            text="Дух",
+            width=10,
+            text="<",
+            height=200,
         )
-        spirit.grid(row=1, column=0, padx=(20, 20), pady=10, sticky="nsew")
-
-        wraith = ctk.CTkButton(
+        self.previous_page_button.grid(row=1, column=0, rowspan=3, padx=0, pady=0, sticky="w")
+        self.previous_page_button._command = lambda: self.prev_page()
+        
+        self.next_page_button = ctk.CTkButton(
             master=self,
-            width=110,
-            text="Мираж",
+            width=10,
+            text=">",
+            height=200,
         )
-        wraith.grid(row=1, column=1, padx=(20, 20), pady=10, sticky="nsew")
-
-        phantom = ctk.CTkButton(
+        self.next_page_button.grid(row=1, column=4, rowspan=4, padx=(0, 0), pady=0, sticky="w")
+        self.next_page_button._command = lambda: self.next_page()
+        
+        self.ghost_1_1 = GhostInfoFrame(
             master=self,
-            width=110,
-            text="Фантом",
+            get_ghost=get_ghost,
+            name="Spirit",
         )
-        phantom.grid(row=1, column=2, padx=(20, 20), pady=10, sticky="nsew")
-
-        poltergeist = ctk.CTkButton(
+        self.ghost_1_2 = GhostInfoFrame(
             master=self,
-            width=110,
-            text="Полтергейст",
+            get_ghost=get_ghost,
+            name="Wraith",
         )
-        poltergeist.grid(row=1, column=3, padx=(20, 20), pady=10, sticky="nsew")
-
-        banshee = ctk.CTkButton(
+        self.ghost_1_3 = GhostInfoFrame(
             master=self,
-            width=110,
-            text="Банши",
+            get_ghost=get_ghost,
+            name="Phantom",
         )
-        banshee.grid(row=1, column=4, padx=(20, 20), pady=10, sticky="nsew")
 
-        jinn = ctk.CTkButton(
+        self.ghost_2_1 = GhostInfoFrame(
             master=self,
-            width=110,
-            text="Джинн",
+            get_ghost=get_ghost,
+            name="Poltergeist",
         )
-        jinn.grid(row=2, column=0, padx=(20, 20), pady=10, sticky="nsew")
-
-        mare = ctk.CTkButton(
+        self.ghost_2_2 = GhostInfoFrame(
             master=self,
-            width=110,
-            text="Мара",
+            get_ghost=get_ghost,
+            name="Banshee",
         )
-        mare.grid(row=2, column=1, padx=(20, 20), pady=10, sticky="nsew")
-
-        revenant = ctk.CTkButton(
+        self.ghost_2_3 = GhostInfoFrame(
             master=self,
-            width=110,
-            text="Ревенант",
+            get_ghost=get_ghost,
+            name="Jinn",
         )
-        revenant.grid(row=2, column=2, padx=(20, 20), pady=10, sticky="nsew")
 
-        shade = ctk.CTkButton(
+        self.ghost_3_1 = GhostInfoFrame(
             master=self,
-            width=110,
-            text="Тень",
+            get_ghost=get_ghost,
+            name="Mare",
         )
-        shade.grid(row=2, column=3, padx=(20, 20), pady=10, sticky="nsew")
-
-        demon = ctk.CTkButton(
+        self.ghost_3_2 = GhostInfoFrame(
             master=self,
-            width=110,
-            text="Демон",
+            get_ghost=get_ghost,
+            name="Revenant",
         )
-        demon.grid(row=2, column=4, padx=(20, 20), pady=10, sticky="nsew")
-
-        yurei = ctk.CTkButton(
+        self.ghost_3_3 = GhostInfoFrame(
             master=self,
-            width=110,
-            text="Юрэй",
+            get_ghost=get_ghost,
+            name="Shade",
         )
-        yurei.grid(row=3, column=0, padx=(20, 20), pady=10, sticky="nsew")
-
-        oni = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Они",
-        )
-        oni.grid(row=3, column=1, padx=(20, 20), pady=10, sticky="nsew")
-
-        yokai = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Ёкай",
-        )
-        yokai.grid(row=3, column=2, padx=(20, 20), pady=10, sticky="nsew")
-
-        hantu = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Ханту",
-        )
-        hantu.grid(row=3, column=3, padx=(20, 20), pady=10, sticky="nsew")
-
-        goryo = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Горё",
-        )
-        goryo.grid(row=3, column=4, padx=(20, 20), pady=10, sticky="nsew")
-
-        myling = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Мюлинг",
-        )
-        myling.grid(row=4, column=0, padx=(20, 20), pady=10, sticky="nsew")
-
-        onryo = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Онрё",
-        )
-        onryo.grid(row=4, column=1, padx=(20, 20), pady=10, sticky="nsew")
-
-        theTwins = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Близнецы",
-        )
-        theTwins.grid(row=4, column=2, padx=(20, 20), pady=10, sticky="nsew")
-
-        raiju = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Райдзю",
-        )
-        raiju.grid(row=4, column=3, padx=(20, 20), pady=10, sticky="nsew")
-
-        obake = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Обакэ",
-        )
-        obake.grid(row=4, column=4, padx=(20, 20), pady=10, sticky="nsew")
-
-        theMimic = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Мимик",
-        )
-        theMimic.grid(row=5, column=1, padx=(20, 20), pady=10, sticky="nsew")
-
-        moroi = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Морой",
-        )
-        moroi.grid(row=5, column=2, padx=(20, 20), pady=10, sticky="nsew")
-
-        deogen = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Деоген",
-        )
-        deogen.grid(row=5, column=3, padx=(20, 20), pady=10, sticky="nsew")
-
-        thaye = ctk.CTkButton(
-            master=self,
-            width=110,
-            text="Тайэ",
-        )
-        thaye.grid(row=5, column=4, padx=(20, 20), pady=10, sticky="nsew")
-
-        spirit._command = lambda: get_ghost(spirit._text)
-        wraith._command = lambda: get_ghost(wraith._text)
-        phantom._command = lambda: get_ghost(phantom._text)
-        poltergeist._command = lambda: get_ghost(poltergeist._text)
-        banshee._command = lambda: get_ghost(banshee._text)
-        jinn._command = lambda: get_ghost(jinn._text)
-        mare._command = lambda: get_ghost(mare._text)
-        revenant._command = lambda: get_ghost(revenant._text)
-        shade._command = lambda: get_ghost(shade._text)
-        demon._command = lambda: get_ghost(demon._text)
-        yurei._command = lambda: get_ghost(yurei._text)
-        oni._command = lambda: get_ghost(oni._text)
-        yokai._command = lambda: get_ghost(yokai._text)
-        hantu._command = lambda: get_ghost(hantu._text)
-        goryo._command = lambda: get_ghost(goryo._text)
-        myling._command = lambda: get_ghost(myling._text)
-        onryo._command = lambda: get_ghost(onryo._text)
-        theTwins._command = lambda: get_ghost(theTwins._text)
-        raiju._command = lambda: get_ghost(raiju._text)
-        obake._command = lambda: get_ghost(obake._text)
-        theMimic._command = lambda: get_ghost(theMimic._text)
-        moroi._command = lambda: get_ghost(moroi._text)
-        deogen._command = lambda: get_ghost(deogen._text)
-        thaye._command = lambda: get_ghost(thaye._text)
     
+        ###
+        self.ghost_1_1.grid(row=1, column=1, padx=(20, 10), pady=10, sticky="nsew")
+        self.ghost_1_2.grid(row=1, column=2, padx=10, pady=10, sticky="nsew")
+        self.ghost_1_3.grid(row=1, column=3, padx=(10, 20), pady=10, sticky="nsew")
+        ###
+        
+        ###
+        self.ghost_2_1.grid(row=2, column=1, padx=(20, 10), pady=10, sticky="nsew")
+        self.ghost_2_2.grid(row=2, column=2, padx=10, pady=10, sticky="nsew")
+        self.ghost_2_3.grid(row=2, column=3, padx=(10, 20), pady=10, sticky="nsew")
+        ###
+        
+        ###
+        self.ghost_3_1.grid(row=3, column=1, padx=(20, 10), pady=10, sticky="nsew")
+        self.ghost_3_2.grid(row=3, column=2, padx=10, pady=10, sticky="nsew")
+        self.ghost_3_3.grid(row=3, column=3, padx=(10, 20), pady=10, sticky="nsew")
+        ###
+        
+        self.draw_page()
+    
+    def next_page(self):
+        self.page = (self.page + 1)%3
+        self.draw_page()
+        
+    def prev_page(self):
+        self.page = (self.page - 1)%3
+        self.draw_page()
+            
+    def draw_page(self):
+        if self.page == 0:
+            self.ghost_1_1.set_name("Spirit")
+            self.ghost_1_2.set_name("Wraith")
+            self.ghost_1_3.set_name("Phantom")
+            self.ghost_2_1.set_name("Poltergeist")
+            self.ghost_2_2.set_name("Banshee")
+            self.ghost_2_3.set_name("Jinn")
+            self.ghost_3_1.set_name("Mare")
+            self.ghost_3_2.set_name("Revenant")
+            self.ghost_3_3.set_name("Shade")
+        elif self.page == 1:
+            self.ghost_1_1.set_name("Demon")
+            self.ghost_1_2.set_name("Yurei")
+            self.ghost_1_3.set_name("Oni")
+            self.ghost_2_1.set_name("Yokai")
+            self.ghost_2_2.set_name("Hantu")
+            self.ghost_2_3.set_name("Goryo")
+            self.ghost_3_1.set_name("Myling")
+            self.ghost_3_2.set_name("Onryo")
+            self.ghost_3_3.set_name("The Twins")
+        elif self.page == 2:
+            self.ghost_1_1.set_name("Raiju")
+            self.ghost_1_2.set_name("Obake")
+            self.ghost_1_3.set_name("The Mimic")
+            self.ghost_2_1.set_name("Moroi")
+            self.ghost_2_2.set_name("Deogen")
+            self.ghost_2_3.set_name("Thaye")
+            self.ghost_3_1.set_name("Null")
+            self.ghost_3_2.set_name("Null")
+            self.ghost_3_3.set_name("Null")
+
+        self.update_buttons(self.possible_ghosts)
+        
     def _update_button(self, button, is_active: bool,):
         state = "normal" if is_active else "disabled"
         _theme = (themes.button_fg_color 
@@ -236,6 +290,12 @@ class GhostsFrame(ctk.CTkFrame):
         Args:
             active_ghosts (List[str]): list of possible ghosts names
         """
-        for button in self.winfo_children()[1:]:
-            self._update_button(button, button._text in possible_ghosts)
+        self.possible_ghosts = possible_ghosts
+        
+        for button in self.winfo_children()[2:]:
+            if button.name in possible_ghosts:
+                button.enable()
+            else:
+                button.disable()
+            #self._update_button(button, button._text in possible_ghosts)
 

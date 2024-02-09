@@ -47,7 +47,7 @@ class App(ctk.CTk):
         self.ghosts_windows = []
 
         # Configure version and titlebar
-        self.__version__ = "1.3"
+        self.__version__ = "1.4"
         self.title(f"Phasma Helper v{self.__version__}")
         self.iconbitmap(".\core\icons\logo.ico")
 
@@ -180,7 +180,7 @@ class App(ctk.CTk):
         self.ghosts_frame.update_buttons(
             possible_ghosts=self.evidences_frame.get_possible_ghosts(self.difficulty),
         )
-
+    
     def create_ghost_window(self, name: str):
         """ Creating the GhostInfoWindow
 

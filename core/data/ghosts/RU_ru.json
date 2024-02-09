@@ -1,4 +1,5 @@
 {
+  "More": {
     "Spirit": {
       "evidences": [
         "EMF",
@@ -331,4 +332,307 @@
         "Можно наблюдать за возрастом Thaye, используя доску Ouiji"
       ]
     }
+  },
+  "Less": {
+    "Spirit": {
+      "evidences": [
+        "EMF 5",
+        "Writing",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Благовония останавливают призрака на 3 минуты",
+        "\n\n"
+      ]
+    },
+    "Wraith": {
+      "evidences": [
+        "EMF 5",
+        "DOTS",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "No Salt interaction, even when hunting",
+        "EMF 2/5 when Teleporting to Player.",
+        "Can Teleport during hunt",
+        ""
+      ]
+    },
+    "Phantom": {
+      "evidences": [
+        "DOTS",
+        "Ultra V.",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Disappears with Photo (not hunting), even ",
+        "during D.O.T.S. (picture will not be distorted)",
+        "Less Visible when Hunting (Every 1-2s)",
+        "EMF 2 when Roaming to Player"
+      ]
+    },
+    "Poltergeist": {
+      "evidences": [
+        "Ultra V.",
+        "Writing",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Many Items Test (Throws every 0.5s)",
+        "Big/Multiple Throws (Sometimes)\n\n"
+      ]
+    },
+    "Banshee": {
+      "evidences": [
+        "DOTS",
+        "Ultra V.",
+        "Orbs"
+      ],
+      "behavior": [
+        "Solo Target Test (target in area)",
+        "Paramic Wail (33% chance), Singing Events Often",
+        "Often roams to target (67% chance, target in area).",
+        "Target-based sanity hunt (50%, target not required in area) "
+      ]
+    },
+    "Jinn": {
+      "evidences": [
+        "EMF 5",
+        "Ultra V.",
+        "Freezing"
+      ],
+      "behavior": [
+        "Fast Chaser (breaker on)",
+        "EMF at Breaker (Lowers Sanity 25%), breaker on",
+        "Can only turn off breaker by overloading\n"
+      ]
+    },
+    "Mare": {
+      "evidences": [
+        "Orbs",
+        "Writing",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Favors Light Events and cannot turn on lights",
+        "Turns off light immediately (tiny %)",
+        "Early hunt in dark (60%), Late hunt in light (40%)",
+        "Prefers to roam in dark rooms"
+      ]
+    },
+    "Revenant": {
+      "evidences": [
+        "Orbs",
+        "Writing",
+        "Freezing"
+      ],
+      "behavior": [
+        "Fast When Sensing Player through sight, sound, or electronic",
+        "Slow When Not Sensing Player\n\n"
+      ]
+    },
+    "Shade": {
+      "evidences": [
+        "EMF 5",
+        "Writing",
+        "Freezing"
+      ],
+      "behavior": [
+        "Less Activity overall",
+        "More likely to manifest as a shadow; only ghost that",
+        "can be a shadow when using cursed possessions",
+        "Low Sanity Hunt (35%)"
+      ]
+    },
+    "Demon": {
+      "evidences": [
+        "Ultra V.",
+        "Writing",
+        "Freezing"
+      ],
+      "behavior": [
+        "Early/Insta-hunt (70% or Ability)",
+        "Crucifix Range Test (50% Larger)",
+        "Smudge stops hunt for only 60s",
+        "20s Hunt Cooldown Between hunts"
+      ]
+    },
+    "Yurei": {
+      "evidences": [
+        "DOTS",
+        "Orbs",
+        "Freezing"
+      ],
+      "behavior": [
+        "Smudge makes Yurei stay in room (1.5m)",
+        "Closes Door without event/hunt (exit door, Yurei guaranteed)",
+        "Door Slam causes -15% Sanity Drain\n"
+      ]
+    },
+    "Oni": {
+      "evidences": [
+        "EMF 5",
+        "DOTS",
+        "Freezing"
+      ],
+      "behavior": [
+        "No Airball, ghost events drain 20% Sanity instead of 10%",
+        "More Visible when hunting (flickers less)",
+        "Many Activities/Events when nearby,",
+        "and more likely to appear as full-form"
+      ]
+    },
+    "Yokai": {
+      "evidences": [
+        "DOTS",
+        "Orbs",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Early Hunt when talking nearby (80%)",
+        "Use Device/Talk when Hiding and not in line-of-sight\n\n"
+      ]
+    },
+    "Hantu": {
+      "evidences": [
+        "Ultra V.",
+        "Orbs",
+        "Freezing"
+      ],
+      "behavior": [
+        "Fast in cold rooms. Slow in warmer rooms.",
+        "Model has Breath (Breaker off)",
+        "Cannot turn breaker on",
+        "Guaranteed Freezing in Nightmare/Insane"
+      ]
+    },
+    "Goryo": {
+      "evidences": [
+        "EMF 5",
+        "DOTS",
+        "Ultra V."
+      ],
+      "behavior": [
+        "Video D.O.T.S. only (No players in room)",
+        "Ghost Room doesn't change, no Long-distance Roam.",
+        "Guaranteed D.O.T.S. in Nightmare/Insane\n"
+      ]
+    },
+    "Myling": {
+      "evidences": [
+        "EMF 5",
+        "Ultra V.",
+        "Writing"
+      ],
+      "behavior": [
+        "Cannot be heard until 12m or closer.",
+        "Sound Test w/ Flashlight Flicker (same floor)",
+        "Paramic Sounds More Often\n"
+      ]
+    },
+    "Onryo": {
+      "evidences": [
+        "Orbs",
+        "Spirit Box",
+        "Freezing"
+      ],
+      "behavior": [
+        "Crucifix/Candle Test (If Crucifix activates first, NOT Onryo)",
+        "Hunts every third flame blown",
+        "Early Hunt (60%)\n"
+      ]
+    },
+    "The Twins": {
+      "evidences": [
+        "EMF 5",
+        "Spirit Box",
+        "Freezing"
+      ],
+      "behavior": [
+        "Two abnormal speeds (Main 10% slower, twin 10% faster)",
+        "No Freezing/Spirit Box in other interacted rooms\n\n"
+      ]
+    },
+    "Raiju": {
+      "evidences": [
+        "EMF 5",
+        "DOTS",
+        "Orbs"
+      ],
+      "behavior": [
+        "Faster Around Electric Equipment",
+        "Early Hunt Around Electric Equipment (65%)\n\n"
+      ]
+    },
+    "Obake": {
+      "evidences": [
+        "EMF 5",
+        "Ultra V.",
+        "Orbs"
+      ],
+      "behavior": [
+        "Ultraviolet can have 6 fingers, disappear quicker,",
+        " and have reduced chance to appear",
+        "Shapeshifts during hunt",
+        "Guaranteed Ultraviolet in Nightmare/Insane"
+      ]
+    },
+    "The Mimic": {
+      "evidences": [
+        "Ultra V.",
+        "Spirit Box",
+        "Freezing"
+      ],
+      "behavior": [
+        "Ghost Orbs Fake Evidence",
+        "Changes Behaviors\n\n"
+      ]
+    },
+    "Moroi": {
+      "evidences": [
+        "Writing",
+        "Spirit Box",
+        "Freezing"
+      ],
+      "behavior": [
+        "Faster at lower sanity",
+        "Smudge 50% more effective during hunt",
+        "Curse Test with Spirit Box/Paramic",
+        "Guaranteed Spirit Box in Nightmare/Insane"
+      ]
+    },
+    "Deogen": {
+      "evidences": [
+        "DOTS",
+        "Writing",
+        "Spirit Box"
+      ],
+      "behavior": [
+        "Spirit Box Heavy Breathing (within 1m of ghost)",
+        "Low Sanity Hunt (40%)",
+        "Fast seeker, ignores hiding, slows down within 4m",
+        "Guaranteed Spirit Box in Nightmare/Insane"
+      ]
+    },
+    "Thaye": {
+      "evidences": [
+        "DOTS",
+        "Orbs",
+        "Writing"
+      ],
+      "behavior": [
+        "Early Hunt (70%)",
+        "Starts Fast, Slower as it Ages",
+        "Low Sanity Hunt when Aged (15%)\n"
+      ]
+    },
+    "Null": {
+      "evidences": [
+        ""
+      ],
+      "behavior": [
+        "\n\n\n"
+      ]
+    }
   }
+}

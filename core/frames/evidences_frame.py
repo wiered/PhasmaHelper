@@ -25,7 +25,7 @@ from icecream import ic
 from core.widgets import EvidenceSwitch, EvidenceButton
 from core.utils import EvidencesManager, lists
 
-MIMIC_EVIDENCES = ['Spirit Box', 'Fingerprints', 'Ghost Orb', 'Freezing Temp']
+MIMIC_EVIDENCES = ['Spirit Box', 'Ultra V.', 'Otbs', 'Freezing']
 
 class EvidencesFrame(ctk.CTkFrame):
     def __init__(self, master, disable_spirits):
@@ -38,8 +38,8 @@ class EvidencesFrame(ctk.CTkFrame):
         
         self.emf_switch = EvidenceButton(
             self,
-            command=lambda: disable_spirits("EMF", self.emf_switch.state),
-            text="EMF"
+            command=lambda: disable_spirits("EMF 5", self.emf_switch.state),
+            text="EMF 5"
             )
         self.emf_switch.grid(row=3, column=0, pady=10, padx=20, sticky="nsew")
 
@@ -52,29 +52,29 @@ class EvidencesFrame(ctk.CTkFrame):
 
         self.fingerprints_switch = EvidenceButton(
             master=self,
-            command=lambda: disable_spirits("Fingerprints", self.fingerprints_switch.state),
-            text="Fingerprints",
+            command=lambda: disable_spirits("Ultra V.", self.fingerprints_switch.state),
+            text="Ultra V.",
         )
         self.fingerprints_switch.grid(row=5, column=0, pady=10, padx=20, sticky="nsew")
         
         self.ghost_orb_switch = EvidenceButton(
             master=self,
-            command=lambda: disable_spirits("Ghost Orb", self.ghost_orb_switch.state),
-            text="Ghost Orb",
+            command=lambda: disable_spirits("Orbs", self.ghost_orb_switch.state),
+            text="Orbs",
             )
         self.ghost_orb_switch.grid(row=6, column=0, pady=10, padx=20, sticky="nsew")
 
         self.ghost_writing_switch = EvidenceButton(
             master=self,
-            command=lambda: disable_spirits("Ghost Writing", self.ghost_writing_switch.state),
-            text="Ghost Writing",
+            command=lambda: disable_spirits("Writing", self.ghost_writing_switch.state),
+            text="Writing",
             )
         self.ghost_writing_switch.grid(row=7, column=0, pady=10, padx=20, sticky="nsew")
 
         self.freezing_temp_switch = EvidenceButton(
             master=self,
-            command=lambda: disable_spirits("Freezing Temp", self.freezing_temp_switch.state),
-            text="Freezing Temp",
+            command=lambda: disable_spirits("Freezing", self.freezing_temp_switch.state),
+            text="Freezing",
             )
         self.freezing_temp_switch.grid(row=8, column=0, pady=10, padx=20, sticky="nsew")
 

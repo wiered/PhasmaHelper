@@ -12,8 +12,10 @@ def read_ghosts():
     with open('.\core\data\evidences.json', encoding='utf-8') as json_file:
         ghosts_by_evidences = json.load(json_file)
         
-    with open('.\core\data\ghosts.json', encoding='utf-8') as json_file:
+    with open('.\core\data\ghosts\EN_en.json', encoding='utf-8') as json_file:
         ghosts_dict = json.load(json_file)
+        
+    ghosts_dict = ghosts_dict.get("More")
         
     for ghost_name in ghosts_dict:
         ghost_data = ghosts_dict.get(ghost_name)
@@ -22,8 +24,6 @@ def read_ghosts():
                 name=ghost_name,
                 evidences=ghost_data.get("evidences"),
                 behavior=ghost_data.get("behavior"),
-                advantages=ghost_data.get("advantages"),
-                strategy=ghost_data.get("strategy"),
                 speed=0,
             )
         )
@@ -37,8 +37,8 @@ class TestEvidencesManager(unittest.TestCase):
         self.assertEqual(evidences_manager.disactivated_evidences, [], "Disactivated evidences is not Empty")
         self.assertEqual(evidences_manager.unknown_evidences, lists.EVIDENCES, "Disactivated evidences is not Empty")
         
-        evidences_manager.change_evidence_state("EMF", 1)
-        self.assertEqual(evidences_manager.activated_evidences, ["EMF"], "No EMF in activated_evidences")
+        evidences_manager.change_evidence_state("EMF 5", 1)
+        self.assertEqual(evidences_manager.activated_evidences, ["EMF 5"], "No EMF in activated_evidences")
         evidences_manager.change_evidence_state("DOTS", 2)
         self.assertEqual(evidences_manager.disactivated_evidences, ["DOTS"], "No DOTS in disactivated_evidences")
     
@@ -117,9 +117,9 @@ class TestEvidencesManager(unittest.TestCase):
         for ghost in ghosts:
             self.assertEqual(evidences_manager.is_ghost_possible(ghost=ghost, difficulty=1), True, "Error in is_ghost_possible, with no activated evidences")
         
-        evidences_manager.change_evidence_state("EMF", 1)
+        evidences_manager.change_evidence_state("EMF 5", 1)
         for ghost in ghosts:
-            if ghost.name in ghosts_by_evidences.get("EMF"):
+            if ghost.name in ghosts_by_evidences.get("EMF 5"):
                 self.assertEqual(evidences_manager.is_ghost_possible(ghost=ghost, difficulty=1), True, "Error in is_ghost_possible, with \"EMF\" evidence")
     
     def test_is_ghost_possible_one_random_evidence(self):
@@ -135,21 +135,21 @@ class TestEvidencesManager(unittest.TestCase):
     def test_possible_ghosts(self):
         evidences_manager = EvidencesManager()
         possible_ghosts = evidences_manager.get_possible_ghosts()
-        for ghost in lists.GHOSTS:
+        for ghost in lists.GHOSTS_EN:
             self.assertEqual(
                 ghost in possible_ghosts,
                 True,
                 "Error in get_possible_ghosts with no evidences"
             )
         
-        evidences_manager.change_evidence_state("EMF", 1)
+        evidences_manager.change_evidence_state("EMF 5", 1)
         possible_ghosts = evidences_manager.get_possible_ghosts()
         _, ghosts_by_evidences = read_ghosts()
-        for ghost in ghosts_by_evidences.get("EMF"):
+        for ghost in ghosts_by_evidences.get("EMF 5"):
             self.assertEqual(
                 ghost in possible_ghosts,
                 True,
-                "Error in get_possible_ghosts with EMF"
+                f"Error in get_possible_ghosts with EMF: p_g: {possible_ghosts}, t_p_g: {ghosts_by_evidences.get('EMF 5')}"
             )
     
     def test_possible_ghosts_random_evidence(self):
@@ -185,7 +185,10 @@ class TestEvidencesManager(unittest.TestCase):
                 self.assertEqual(
                     ghost in possible_ghosts,
                     True,
-                    f"Error in get_possible_ghosts with multiple random \nf_e: {first_evidence} \ns_e: {second_evidence} \np_g: {possible_ghosts} \nt_p_g: {test_possible_ghosts}"
+                    f"""Error in get_possible_ghosts with multiple random \nf_e: {first_evidence} \ns_e: {second_evidence} \np_g: {possible_ghosts} \nt_p_g: {test_possible_ghosts}
+                    f_e_gs = {first_evidence_ghost}
+                    s_e_gs = {second_evidence_ghost}
+                    """
                 )
             evidences_manager.reset_evidences()
     
@@ -193,7 +196,7 @@ class TestEvidencesManager(unittest.TestCase):
         _, ghosts_by_evidences = read_ghosts()
         evidences_manager = EvidencesManager()
         for i in range(20):
-            evidence_ghosts = copy(lists.GHOSTS)
+            evidence_ghosts = copy(lists.GHOSTS_EN)
             k = random.randint(0, 6)
             evidences = random.sample(lists.EVIDENCES, k)
             for evidence in evidences:
@@ -251,7 +254,7 @@ class TestEvidencesManager(unittest.TestCase):
         self.assertEqual(evidences_manager.disactivated_evidences, [], "Disactivated evidences is not Empty")
         self.assertEqual(evidences_manager.unknown_evidences, lists.EVIDENCES, "Disactivated evidences is not Empty")
         
-        evidences_manager.change_evidence_state("EMF", 1)
+        evidences_manager.change_evidence_state("EMF 5", 1)
         evidences_manager.change_evidence_state("Spirit Box", 2)
         evidences_manager.reset_evidences()
         self.assertEqual(evidences_manager.activated_evidences, [], "Activated evidences is not Empty")
