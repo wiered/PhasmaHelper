@@ -21,6 +21,7 @@ import customtkinter as ctk
 
 from core.utils import themes, get_ghost_data, adjust_lines_lenght, read_data
 from core.utils import lists
+from config import cfg
 
 
 class GhostInfoFrame(ctk.CTkFrame):
@@ -142,7 +143,7 @@ class GhostInfoFrame(ctk.CTkFrame):
 class GhostsFrame(ctk.CTkFrame):
     def __init__(self, master, get_ghost):
         super().__init__(master)
-        read_data("EN_en")
+        read_data(cfg.language)
         self.possible_ghosts = copy(lists.GHOSTS_EN)
         
         self.page = 0

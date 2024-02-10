@@ -46,6 +46,7 @@ class Config:
             self.color_theme = config.get('Default', 'color_theme')
             self.ghosts_window_alpha = float(config.get('Default', 'ghosts_window_alpha'))
             self.cursed_items_window_alpha = float(config.get('Default', 'cursed_items_window_alpha'))
+            self.language = config.get('Default', 'language')
     
     def read_config(self):
         if not os.path.exists("./config/default_config.ini"):
@@ -69,6 +70,7 @@ class Config:
             config.set('Default', 'color_theme', self.color_theme)
             config.set('Default', 'ghosts_window_alpha', str(round(self.ghosts_window_alpha, 2)))
             config.set('Default', 'cursed_items_window_alpha', str(round(self.cursed_items_window_alpha, 2)))
+            config.set('Default', 'language', self.language)
             config.write(config_file)
             
             

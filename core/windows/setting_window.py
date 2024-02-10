@@ -39,6 +39,9 @@ class SettingWindow(ctk.CTkToplevel):
             text="Minimalistic Info",
             )
         self.minimalistic_info_switch.grid(row=0, column=0, pady=10, padx=20, sticky="nsew")
+        self.minimalistic_info_switch.configure(
+            state = "disabled"
+        )
         
         self.label_ghosts_window_alpha = ctk.CTkLabel(
             master=self.settings_frame,
@@ -84,7 +87,7 @@ class SettingWindow(ctk.CTkToplevel):
         
         self.language_button = ctk.CTkButton(
             master=self.settings_frame,
-            text = "Language: EN_en"
+            text = f"Language: {cfg.language}"
         )
         self.language_button.grid(row=5, column=0, padx=20, pady=(10, 20), sticky="nsew")
         self.language_button._command = lambda: self.change_language(self.language_button)
@@ -94,13 +97,13 @@ class SettingWindow(ctk.CTkToplevel):
             
     def change_language(self, language_button):
         if "EN_en" in language_button.cget("text"):
-            read_data("RU_ru")
-            language_button.configure(text = "Language: RU_ru")
-            self.master.master.ghosts_frame.draw_page()
+            cfg.language = 'RU_ru'
         elif "RU_ru" in language_button.cget("text"):
-            read_data("EN_en")
-            language_button.configure(text = "Language: EN_en")
-            self.master.master.ghosts_frame.draw_page()
+            cfg.language = 'EN_en'
+            
+        read_data(cfg.language)
+        language_button.configure(text = f"Language: {cfg.language}")
+        self.master.master.ghosts_frame.draw_page()
     
     def change_is_minimalistic(self):
         cfg.plain_text = not cfg.plain_text
